@@ -1,0 +1,17 @@
+.app {
+  height: 100vh;
+  background-color: rgb(113, 211, 255);
+}
+.tweet {
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.red {
+  color: red;
+  font-size: 50px;
+}

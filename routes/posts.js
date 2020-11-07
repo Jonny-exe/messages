@@ -42,32 +42,21 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var fs = require("fs");
 var path = require('path');
+var cors = require('cors');
 // THIS WONT WORK IF YOU VPN IS ON
 // Make sure the link is correct
-var Create = /** @class */ (function () {
-    function Create() {
-        this.create_span();
-    }
-    Create.prototype.create_span = function () {
-        var span = window.document.createElement('span');
-        span.innerHTML = "Comment";
-    };
-    return Create;
-}());
-var element = new Create;
-element.create_span();
 router.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var posts, post, err_1;
+    var posts, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 console.log("Trying to get");
-                return [4 /*yield*/, Post.find()];
+                return [4 /*yield*/, Post.find().limit(1)];
             case 1:
                 posts = _a.sent();
-                post = posts[0].title;
-                res.sendFile(__dirname + '/index.html');
+                console.log("Got it");
+                res.json(posts[0]);
                 return [3 /*break*/, 3];
             case 2:
                 err_1 = _a.sent();
@@ -77,12 +66,34 @@ router.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, fu
         }
     });
 }); });
-// Dont forget sending something back
-router.post('/', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var post, savedPost, err_2;
+router.get('/getall', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var posts, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                _a.trys.push([0, 2, , 3]);
+                console.log("Trying to get");
+                return [4 /*yield*/, Post.find()];
+            case 1:
+                posts = _a.sent();
+                console.log("Got it");
+                res.json(posts);
+                return [3 /*break*/, 3];
+            case 2:
+                err_2 = _a.sent();
+                res.json({ message: err_2 });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+// Dont forget sending something back
+router.post('/', cors("http://192.168.0.16:5000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var post, savedPost, err_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                console.log(typeof req.body);
                 console.log(req.body);
                 post = new Post({
                     title: req.body.title,
@@ -100,8 +111,8 @@ router.post('/', function (req, res) { return __awaiter(_this, void 0, void 0, f
                 res.json(savedPost);
                 return [3 /*break*/, 4];
             case 3:
-                err_2 = _a.sent();
-                res.json(err_2);
+                err_3 = _a.sent();
+                res.json(err_3);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }

@@ -43,6 +43,7 @@ var _this = this;
 // to run:
 // npm start
 //
+var cors = require('cors');
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
@@ -50,11 +51,14 @@ require('dotenv/config');
 var Post = require('./models/Post');
 var homeRoutes = require('./routes/posts');
 var bodyParser = require('body-parser');
-var port = 5000;
+var port = "5000";
 var path = require('path');
 // If you get error this port is already in use.
 // do: sudo killall -9 node command
 app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// You need to use this to allow something
+app.use(cors("http://192.168.0.16:5000"));
 app.use('/', homeRoutes);
 console.log("Connecting to db ...");
 try {
@@ -93,5 +97,6 @@ var find = function () { return __awaiter(_this, void 0, void 0, function () {
 app.listen(port, function (err) {
     if (err)
         console.log(err);
-    console.log("This is on port" + port);
+    console.log("This is on port " + port);
 });
+exports.module = app;

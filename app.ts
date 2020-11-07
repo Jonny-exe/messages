@@ -6,6 +6,7 @@
 // to run:
 // npm start
 //
+const cors = require('cors')
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -13,13 +14,15 @@ require('dotenv/config');
 const Post = require('./models/Post')
 const homeRoutes = require('./routes/posts')
 const bodyParser = require('body-parser');
-const port: number = 5000
+const port: string = "5000"
 const path = require('path');
 
 // If you get error this port is already in use.
 // do: sudo killall -9 node command
-
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }));
+// You need to use this to allow something
+app.use(cors("http://192.168.0.16:5000"))
 app.use('/', homeRoutes)
 console.log("Connecting to db ...")
 try {
@@ -52,5 +55,7 @@ var find = async () => {
 
 app.listen(port, (err) => {
   if (err) console.log(err)
-  console.log("This is on port" + port)
+  console.log("This is on port " + port)
 })
+
+exports.module = app;
