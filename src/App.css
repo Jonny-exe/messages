@@ -1,17 +1,21 @@
 .app {
   height: 100vh;
-  background-color: rgb(113, 211, 255);
-}
-.tweet {
   background-color: white;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
+
+.tweet {}
 
 .red {
   color: red;
   font-size: 50px;
+}
+
+.message {
+  background-color: rgb(113, 211, 255);
+  margin-left: 1%;
+  border-radius: 30px;
+  text-align: left;
+  padding-left: 1%;
+  max-width: 50%;
+  overflow: auto;
 }

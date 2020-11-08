@@ -8,7 +8,7 @@ function Hello() {
   }
   return (
     <div>
-      <button onClick={sayHello}> {counter} </button>
+      <button type="button" onClick={sayHello}> {counter} </button>
     </div>
   )
 }
