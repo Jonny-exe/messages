@@ -6,8 +6,9 @@ export const MessagesAll = (props: any) =>  {
   const {data, loading} = useFetch("getall")
   return (
     <div>
-      {data.forEach((x: any)  => {
+      {!data ? "loading" : data.forEach((x: any)  => {
         <Message content={x.title} />
+        console.log(x.title)
       })}
     </div>
   )
