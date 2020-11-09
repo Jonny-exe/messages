@@ -4,8 +4,6 @@ import Tweet from './tweet'
 import Message from './message'
 import './App.css'
 import { useFetch } from './requests'
-import { postRequest } from './requests'
-import SendButton from './SendButton'
 import SendInput from './SendInput'
 import MessagesAll from './MessagesAll'
 const App = () => {
@@ -14,9 +12,8 @@ const App = () => {
   return (
     <div className="app">
       <div> {!data ? "loading" : data.title }</div>
-      <SendButton />
       <SendInput />
-      {/* <MessagesAll /> */}
+      <MessagesAll />
     </div>
   )
 }
