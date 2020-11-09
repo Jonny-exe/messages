@@ -4,7 +4,7 @@ import Tweet from './tweet'
 import Message from './message'
 import './App.css'
 import { useFetch } from './requests'
-import SendInput from './SendInput'
+import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
 const App = () => {
   const {data, loading} = useFetch()

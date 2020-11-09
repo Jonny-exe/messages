@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { postRequest } from './requests'
 
-export const SendInput = (props: any) =>  {
+export const SendInput = () =>  {
 
   const [inputValue, setInputValue] = useState("")
 
