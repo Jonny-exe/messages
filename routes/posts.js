@@ -73,7 +73,7 @@ router.get('/getall', function (req, res) { return __awaiter(_this, void 0, void
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 console.log("Trying to get");
-                return [4 /*yield*/, Post.find()];
+                return [4 /*yield*/, Post.find().limit(20)];
             case 1:
                 posts = _a.sent();
                 console.log("Got it");
@@ -96,8 +96,9 @@ router.post('/', cors("http://192.168.0.16:5000"), function (req, res) { return 
                 console.log(typeof req.body);
                 console.log(req.body);
                 post = new Post({
-                    title: req.body.title,
-                    description: req.body.description
+                    sender: req.body.sender,
+                    receiver: req.body.receiver,
+                    textContent: req.body.textContent
                 });
                 console.log("New");
                 console.log(mongoose.connection.readyState);

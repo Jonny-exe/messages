@@ -29,11 +29,9 @@ router.get('/getall', async (req, res) => {
   // Be aware that the posts obejct is inside an array
   try {
     console.log("Trying to get")
-    const posts: object[] = await Post.find()
+    const posts: object[] = await Post.find().limit(20)
     console.log("Got it")
     res.json(posts)
-    // console.log(posts[0])
-    // res.send("<html><body><h1>hi</h1></body></html>")
   } catch (err) {
     res.json({ message: err })
   }
@@ -43,8 +41,9 @@ router.post('/', cors("http://192.168.0.16:5000"), async (req, res) => {
   console.log(typeof req.body)
   console.log(req.body)
   const post = new Post({
-    title: req.body.title,
-    description: req.body.description
+    sender: req.body.sender,
+    receiver: req.body.receiver,
+    textContent: req.body.textContent
   }
   );
   console.log("New")

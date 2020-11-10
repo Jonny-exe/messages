@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
-import Hello from './Hello'
-import Tweet from './tweet'
-import Message from './message'
 import './App.css'
 import { useFetch } from './requests'
 import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
+import Login from './Login'
 const App = () => {
   const {data, loading} = useFetch()
   // postRequest("this is the test", "this is the new test")
-  return (
+  const parentFunction = () => {
+
+  }
+return (
     <div className="app">
-      <div> {!data ? "loading" : data.title }</div>
-      <SendInput />
+      <Login />
       <MessagesAll />
+      <SendInput />
+
     </div>
   )
 }

@@ -11,9 +11,38 @@
 .message {
   background-color: rgb(113, 211, 255);
   margin: 1%;
+  margin-left: 2%;
   border-radius: 30px;
   text-align: left;
   padding-left: 1%;
   max-width: 50%;
   overflow: auto;
+}
+
+.sendInput {
+  width: 70%;
+  margin: 10%;
+}
+
+.sendButton {
+}
+
+.inputs {
+  display: inline-block;
+}
+
+.logins {
+  float: right;
+  height: 45px;
+  margin: 0.2%;
+  display: inline-block;
+}
+
+.loginToggle {
+  vertical-align: middle;
+  height: 45px;
+  border: 2px solid rgb(0, 186, 255);
+  width: 45px;
+  border-radius: 100%;
+  font-size: 75%;
 }

@@ -3,7 +3,7 @@ import React from 'react'
 function Message(props: any) {
   return (
     <div className="message">
-       {props.content} 
+       {props.content}
     </div>
   )
 }

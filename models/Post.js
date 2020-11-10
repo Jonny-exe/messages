@@ -1,11 +1,15 @@
 var mongoose = require("mongoose");
 console.log("creating scheme");
 var PostSchema = mongoose.Schema({
-    title: {
+    sender: {
         type: String,
         required: true
     },
-    description: {
+    receiver: {
+        type: String,
+        required: true
+    },
+    textContent: {
         type: String,
         required: true
     },
@@ -15,5 +19,5 @@ var PostSchema = mongoose.Schema({
     }
 });
 console.log("Exporting POST");
-module.exports = mongoose.model('Posts', PostSchema);
+module.exports = mongoose.model('Posts1', PostSchema);
 console.log("Exported");
