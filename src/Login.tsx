@@ -16,15 +16,11 @@ export const Login = (props: any) => {
     setStoreUser(event.target.value)
   }
 
-  const setInput = (event: any) => {
-    setUser(storeUser)
-  }
-
   return (
     <label>
       <button type="button" onClick={handleToggle} className="logins loginToggle" >Toggle</button>
       <label style={{ visibility: visible ? "visible" : "hidden" }}>
-        <button type="button" onClick={setInput} className="logins">Send</button>
+        <button type="button" onClick={props.setUser(storeUser)} className="logins">Send</button>
         <input type="text" onChange={handleInput} className="logins" placeholder="Username"></input>
       </label>
     </label>

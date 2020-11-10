@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { postRequest } from './requests'
 
-const SendInputs = () =>  {
+const SendInputs = (props: any) =>  {
 
   const [inputValue, setInputValue] = useState("")
-  const [user, setUser] = useState("")
 
   const handleInput = (event: any) => {
     setInputValue(event.target.value)
@@ -12,11 +11,7 @@ const SendInputs = () =>  {
 
   const postValue = () => {
     console.log(inputValue)
-    postRequest("jonny", "Someone else", inputValue)
-  }
-
-  const setInput = (storeUser: string) => {
-    setUser(storeUser)
+    postRequest(props.valueUser, "Someone else", inputValue)
   }
 
   return (

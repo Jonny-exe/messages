@@ -7,14 +7,16 @@ import Login from './Login'
 const App = () => {
   const {data, loading} = useFetch()
   // postRequest("this is the test", "this is the new test")
-  const parentFunction = () => {
-
+  const [user, setUser] = useState("")
+  const setInput = (storeUser: string) => {
+    setUser(storeUser)
   }
+
 return (
     <div className="app">
-      <Login />
+      <Login setUser={setInput}/>  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
       <MessagesAll />
-      <SendInput />
+      <SendInput valueUser={user}/>
 
     </div>
   )
