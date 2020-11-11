@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import './App.css'
-import { useFetch } from './requests'
 import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
 import Login from './Login'
 import Friends from './Friends'
 const App = () => {
-  const { data, loading } = useFetch()
+  // const { data, loading } = useFetch()
   // postRequest("this is the test", "this is the new test")
   const [user, setUser] = useState("")
   const setInput = (storeUser: string) => {
@@ -20,7 +19,7 @@ const App = () => {
           <Friends />
         </div>
         <div className="messages">
-          <MessagesAll />
+          <MessagesAll valueUser={user}/>
           <SendInput valueUser={user} />
         </div>
         <div className="float">
