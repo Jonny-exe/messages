@@ -1,48 +1,91 @@
 .app {
   height: 100vh;
   background-color: white;
+  display: flex;
+  padding: 0.1%;
 }
 
-.red {
-  color: red;
-  font-size: 50px;
+
+.sendInputs {
+  display: flex;
+  width: 100%;
+}
+
+.sendButton {
+  width: 30%;
+  min-height: 30px;
+  height: 30px;
+  margin: 1%;
+}
+
+.sendInput {
+  width: 409%;
+  min-height: 30px;
+  height: 30px;
+  margin: 1%;
+}
+
+.logins {
+  margin: 1%;
+  overflow: hidden;
+}
+
+.loginDiv {
+  background-color: lightblue;
+  height: 100%;
+}
+
+.loginInputs {
+  width: 100px;
+  margin: 1%;
+}
+
+.loginToggle {
+  margin-left: auto;
+  height: 45px;
+  border: 2px solid rgb(0, 186, 255);
+  width: 45px;
+  border-radius: 100%;
+  font-size: 12px;
 }
 
 .message {
   background-color: rgb(113, 211, 255);
   margin: 1%;
   margin-left: 2%;
+  margin-right: 2%;
   border-radius: 30px;
-  text-align: left;
+  text-align: right;
   padding-left: 1%;
+  padding-right: 1%;
   max-width: 50%;
   overflow: auto;
+  display: flex;
+  align-self: center;
 }
 
-.sendInput {
-  width: 70%;
-  margin: 10%;
+.messages {
+  margin: 1%;
+  width: 95%;
+  max-height: 90%;
+  overflow: scroll;
 }
 
-.sendButton {
+.messagesDiv {
+  margin: 1%;
+  width: 95%;
+  max-height: 90%;
 }
 
-.inputs {
-  display: inline-block;
+.friends {
+  width: 20%;
+  height: 200%;
+  margin: 1%;
 }
 
-.logins {
-  float: right;
-  height: 45px;
-  margin: 0.2%;
-  display: inline-block;
-}
-
-.loginToggle {
-  vertical-align: middle;
-  height: 45px;
-  border: 2px solid rgb(0, 186, 255);
-  width: 45px;
-  border-radius: 100%;
-  font-size: 75%;
+.friend {
+  margin: 1%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  border-bottom: 2px solid grey
 }

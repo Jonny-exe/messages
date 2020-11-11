@@ -1,11 +1,11 @@
 import React from 'react'
 import Message from './Message'
-import { useFetch } from './requests'
+import { GetWithFilter } from './requests'
 
 export const MessagesAll = () =>  {
-  const {data} = useFetch("getall")
+  const {data} = GetWithFilter("jonny", "hi")
   return (
-    <div>
+    <div className="messages">
       {!data ? "loading" : data.map((content: any) => (
         <Message content={content.textContent} key={content._id} />
       ))}

@@ -52,7 +52,7 @@ router.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, fu
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 console.log("Trying to get");
-                return [4 /*yield*/, Post.find().limit(1)];
+                return [4 /*yield*/, Post.find().limit()];
             case 1:
                 posts = _a.sent();
                 console.log("Got it");
@@ -66,16 +66,23 @@ router.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, fu
         }
     });
 }); });
-router.get('/getall', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var posts, err_2;
+router.post('/getwithfilter', cors("http://192.168.0.16:5000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var filterReceiver, filterSender, posts, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
+                console.log(req.body.filter);
+                filterReceiver = req.body.filter.receiver;
+                filterSender = req.body.filter.sender;
                 console.log("Trying to get");
-                return [4 /*yield*/, Post.find().limit(20)];
+                return [4 /*yield*/, Post.find({
+                        sender: filterSender,
+                        receiver: filterReceiver
+                    }).limit(20)];
             case 1:
                 posts = _a.sent();
+                console.log(posts);
                 console.log("Got it");
                 res.json(posts);
                 return [3 /*break*/, 3];
@@ -87,9 +94,33 @@ router.get('/getall', function (req, res) { return __awaiter(_this, void 0, void
         }
     });
 }); });
+router.get('/getall', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var params, filterReceiver, posts, err_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                params = new URLSearchParams("localhost:5000/?id=2");
+                filterReceiver = params.get('filterReceiver');
+                console.log(filterReceiver);
+                console.log("Trying to get");
+                return [4 /*yield*/, Post.find({ sender: "jonny" }).limit(20)];
+            case 1:
+                posts = _a.sent();
+                console.log("Got it");
+                res.json(posts);
+                return [3 /*break*/, 3];
+            case 2:
+                err_3 = _a.sent();
+                res.json({ message: err_3 });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
 // Dont forget sending something back
 router.post('/', cors("http://192.168.0.16:5000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var post, savedPost, err_3;
+    var post, savedPost, err_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -112,8 +143,8 @@ router.post('/', cors("http://192.168.0.16:5000"), function (req, res) { return 
                 res.json(savedPost);
                 return [3 /*break*/, 4];
             case 3:
-                err_3 = _a.sent();
-                res.json(err_3);
+                err_4 = _a.sent();
+                res.json(err_4);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }

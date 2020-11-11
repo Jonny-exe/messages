@@ -15,9 +15,9 @@ const SendInputs = (props: any) =>  {
   }
 
   return (
-    <div>
-      <input type="text" className={"sendInput inputs"} onChange={handleInput}/>
-		  <button type="button" className={"sendButton inputs"} onClick={postValue}>Send</button>
+    <div className="inputs">
+      <input type="text" className="sendInput" onChange={handleInput}/>
+		  <button type="button" className="sendButton" onClick={postValue}>Send</button>
     </div>
   )
 }

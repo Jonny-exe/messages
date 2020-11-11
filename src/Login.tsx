@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 
 export const Login = (props: any) => {
+  console.log(typeof props)
   const [visible, setLoginVisibility] = useState(false)
 
   const handleToggle = () => {
@@ -16,14 +17,24 @@ export const Login = (props: any) => {
     setStoreUser(event.target.value)
   }
 
+
+  if (visible) {
+    return (
+      <div className="loginDiv">
+        <div className="loginToggle">
+          <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+        </div>
+        <div className="logins">
+          <input type="text" onChange={handleInput} className="loginInputs" placeholder="Username"></input>
+          <button type="button" onClick={props.setUser(storeUser)} className="loginInputs">Send</button>
+        </div>
+      </div>
+    )
+  }
   return (
-    <label>
-      <button type="button" onClick={handleToggle} className="logins loginToggle" >Toggle</button>
-      <label style={{ visibility: visible ? "visible" : "hidden" }}>
-        <button type="button" onClick={props.setUser(storeUser)} className="logins">Send</button>
-        <input type="text" onChange={handleInput} className="logins" placeholder="Username"></input>
-      </label>
-    </label>
+    <div className="loginToggle">
+      <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+    </div>
   )
 }
 

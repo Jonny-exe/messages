@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   // Be aware that the posts obejct is inside an array
   try {
     console.log("Trying to get")
-    const posts: object = await Post.find().limit(1)
+    const posts: object = await Post.find().limit()
     console.log("Got it")
     res.json(posts[0])
     // console.log(posts[0])
@@ -24,12 +24,33 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/getwithfilter', cors("http://192.168.0.16:5000"), async (req, res) => {
+  // Be aware that the posts obejct is inside an array
+  try {
+    console.log(req.body.filter)
+    const filterReceiver: string = req.body.filter.receiver
+    const filterSender: string = req.body.filter.sender
+    console.log("Trying to get")
+    const posts: object[] = await Post.find({
+      sender: filterSender,
+      receiver: filterReceiver
+    }).limit(20)
+    console.log(posts)
+    console.log("Got it")
+    res.json(posts)
+  } catch (err) {
+    res.json({ message: err })
+  }
+});
 
 router.get('/getall', async (req, res) => {
   // Be aware that the posts obejct is inside an array
   try {
+    let params = new URLSearchParams("localhost:5000/?id=2");
+    const filterReceiver: string = params.get('filterReceiver')
+    console.log(filterReceiver)
     console.log("Trying to get")
-    const posts: object[] = await Post.find().limit(20)
+    const posts: object[] = await Post.find({ sender: "jonny" }).limit(20)
     console.log("Got it")
     res.json(posts)
   } catch (err) {
