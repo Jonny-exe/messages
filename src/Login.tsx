@@ -1,36 +1,62 @@
 import React, { useEffect, useState } from 'react'
+import FriendAdd from './FriendAdd'
+import LoginInputs from './LoginInputs'
 
 
 export const Login = (props: any) => {
-  const [visible, setLoginVisibility] = useState(false)
-  const [storeUser, setStoreUser] = useState(localStorage.getItem("user"))
 
-  props.setUser(localStorage.getItem("user"))
+  const isSet = localStorage.getItem("user") === "undefined"
+  const storedUser = localStorage.getItem("user")
+  const [visible, setLoginVisibility] = useState(false)
+  const [alreadySent, setAlreadySent] = useState(!isSet)
+
+  props.setUser(storedUser)
   const handleToggle = () => {
     setLoginVisibility(!visible)
-    console.log(visible)
   }
 
-  const handleInput = (event: any) => {
-    setStoreUser(event.target.value)
+  const sendOnClick = () => {
+    toggleAlreadySet()
   }
 
-  const sendInput = () => {
-    props.setUser(storeUser)
+  const toggleAlreadySet = () => {
+    setAlreadySent(!alreadySent)
+    console.log("this is already sent " + alreadySent)
+  }
+
+  const logOut = () => {
+    props.setUser(undefined)
+  }
+
+  const logOutOnClick = () => {
+    localStorage.setItem("user", "undefined")
+    logOut()
+    toggleAlreadySet()
   }
 
   if (visible) {
-    return (
-      <div className="loginDiv">
-        <div className="loginToggle">
-          <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+    if (!alreadySent || storedUser === "undefined") {
+      return (
+        <div className="loginDiv">
+          <div className="loginToggle">
+            <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+          </div>
+          <LoginInputs setUser={props.setUser} setAlreadySet={toggleAlreadySet}/>
+          <FriendAdd setUser={props.setUser}/>
         </div>
-        <div className="logins">
-          <input type="text" onChange={handleInput} className="loginInputs" placeholder="Username"></input>
-          <button type="button" onClick={sendInput} className="loginInputs">Send</button>
+      )
+    } else {
+      return (
+        <div className="loginDiv">
+          <div className="loginToggle">
+            <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+          </div>
+          <div className="logins">
+            <button onClick={logOutOnClick}>Logout</button>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
   return (
     <div className="loginToggle">

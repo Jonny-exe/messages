@@ -1,5 +1,15 @@
-import React from 'react'
-const LoginInptus = () => {
+import React, { useState } from 'react'
+const LoginInputs = (props: any) => {
+  const [storeUser, setStoreUser] = useState(localStorage.getItem("user"))
+  const handleInput = (event: any) => {
+    setStoreUser(event.target.value)
+  }
+
+  const sendInput = () => {
+    props.setUser(storeUser)
+    props.setAlreadySet()
+  }
+
   return (
     <div className="logins">
       <input type="text" onChange={handleInput} className="loginInputs" placeholder="Username"></input>
@@ -7,3 +17,5 @@ const LoginInptus = () => {
     </div>
   )
 }
+
+export default LoginInputs

@@ -9,7 +9,6 @@ const App = () => {
   // postRequest("this is the test", "this is the new test")
   const [user, setUser] = useState("")
   const setInput = (storeUser: string) => {
-    console.log(storeUser)
     localStorage.setItem("user", storeUser)
     setUser(storeUser)
   }
