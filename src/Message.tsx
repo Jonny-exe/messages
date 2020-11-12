@@ -1,13 +1,13 @@
-import React ,{ useState } from 'react'
+import React from 'react'
 
-function Message(props: any) {
-  const sender = props.data.sender
-  const text = props.data.textContent
-  const user = props.user
+const Message = (props: any) => {
+  const sender: string = props.data.sender
+  const text: string = props.data.textContent
+  const user: string = props.user
 
   return (
     <div className={`message ${user === sender ? "messageRigth" : "messageLeft"}`}>
-      {props.data.textContent}
+      {text}
     </div>
   )
 }

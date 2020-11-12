@@ -9,6 +9,8 @@ const App = () => {
   // postRequest("this is the test", "this is the new test")
   const [user, setUser] = useState("")
   const setInput = (storeUser: string) => {
+    console.log(storeUser)
+    localStorage.setItem("user", storeUser)
     setUser(storeUser)
   }
 
@@ -16,7 +18,7 @@ const App = () => {
     <div>
       <div className="app">
         <div className="friends">
-          <Friends />
+          <Friends valueUser={user}/>
         </div>
         <div className="messages">
           <MessagesAll valueUser={user}/>

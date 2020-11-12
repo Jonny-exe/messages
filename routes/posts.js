@@ -77,8 +77,16 @@ router.post('/getwithfilter', cors("http://192.168.0.16:5000"), function (req, r
                 filterSender = req.body.filter.sender;
                 console.log("Trying to get");
                 return [4 /*yield*/, Post.find({
-                        sender: filterSender,
-                        receiver: filterReceiver
+                        $or: [
+                            {
+                                sender: filterSender,
+                                receiver: filterReceiver
+                            },
+                            {
+                                sender: "Himynameisjonny",
+                                receiver: "Someone else"
+                            }
+                        ]
                     }).limit(20)];
             case 1:
                 posts = _a.sent();

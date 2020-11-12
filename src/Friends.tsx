@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Friend from './Friend'
 
-const Friends = () =>  {
+const Friends = (props: any) =>  {
   const friends = [
     "Gon",
     "gango",
@@ -14,6 +14,7 @@ const Friends = () =>  {
   ]
   return (
     <div>
+      <h1>{props.valueUser}</h1>
       {friends.map(name => (<Friend name={name} />))}
     </div>
   )
