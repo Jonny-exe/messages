@@ -37,12 +37,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 var express = require('express');
 var router = express.Router();
-var Post = require('../models/Post');
-var mongoose = require('mongoose');
+var PostUsers = require('../models/PostUsers');
+var PostMessages = require('../models/PostMessages');
 var bodyParser = require('body-parser');
 var fs = require("fs");
 var path = require('path');
 var cors = require('cors');
+var mongoose = require('mongoose');
 // THIS WONT WORK IF YOU VPN IS ON
 // Make sure the link is correct
 router.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
@@ -51,11 +52,9 @@ router.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, fu
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                console.log("Trying to get");
-                return [4 /*yield*/, Post.find().limit()];
+                return [4 /*yield*/, PostMessages.find().limit()];
             case 1:
                 posts = _a.sent();
-                console.log("Got it");
                 res.json(posts[0]);
                 return [3 /*break*/, 3];
             case 2:
@@ -66,39 +65,42 @@ router.get('/', function (req, res) { return __awaiter(_this, void 0, void 0, fu
         }
     });
 }); });
-router.post('/getwithfilter', cors("http://192.168.0.16:5000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+router.post('/getwithfilter', cors("http://192.168.0.16:3000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var filterReceiver, filterSender, posts, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                console.log("Get with filter");
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
                 console.log(req.body.filter);
                 filterReceiver = req.body.filter.receiver;
                 filterSender = req.body.filter.sender;
                 console.log("Trying to get");
-                return [4 /*yield*/, Post.find({
+                return [4 /*yield*/, PostMessages.find({
                         $or: [
                             {
                                 sender: filterSender,
                                 receiver: filterReceiver
                             },
                             {
-                                sender: "Himynameisjonny",
-                                receiver: "Someone else"
+                                sender: filterReceiver,
+                                receiver: filterSender
                             }
                         ]
                     }).limit(20)];
-            case 1:
+            case 2:
                 posts = _a.sent();
                 console.log(posts);
                 console.log("Got it");
                 res.json(posts);
-                return [3 /*break*/, 3];
-            case 2:
+                return [3 /*break*/, 4];
+            case 3:
                 err_2 = _a.sent();
                 res.json({ message: err_2 });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); });
@@ -112,7 +114,7 @@ router.get('/getall', function (req, res) { return __awaiter(_this, void 0, void
                 filterReceiver = params.get('filterReceiver');
                 console.log(filterReceiver);
                 console.log("Trying to get");
-                return [4 /*yield*/, Post.find({ sender: "jonny" }).limit(20)];
+                return [4 /*yield*/, PostMessages.find({ sender: "jonny" }).limit(20)];
             case 1:
                 posts = _a.sent();
                 console.log("Got it");
@@ -127,20 +129,19 @@ router.get('/getall', function (req, res) { return __awaiter(_this, void 0, void
     });
 }); });
 // Dont forget sending something back
-router.post('/', cors("http://192.168.0.16:5000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+router.post('/', cors("http://192.168.0.16:3000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var post, savedPost, err_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 console.log(typeof req.body);
                 console.log(req.body);
-                post = new Post({
+                post = new PostMessages({
                     sender: req.body.sender,
                     receiver: req.body.receiver,
                     textContent: req.body.textContent
                 });
                 console.log("New");
-                console.log(mongoose.connection.readyState);
                 console.log(post);
                 _a.label = 1;
             case 1:
@@ -155,6 +156,81 @@ router.post('/', cors("http://192.168.0.16:5000"), function (req, res) { return 
                 res.json(err_4);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/getfriends', cors(), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var posts, err_5;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                console.log("Trying to get");
+                return [4 /*yield*/, PostUsers.findOne({ name: req.body.name })];
+            case 1:
+                posts = _a.sent();
+                console.log("Got it");
+                res.json(posts);
+                return [3 /*break*/, 3];
+            case 2:
+                err_5 = _a.sent();
+                res.json({ message: err_5 });
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/addfriend', cors("http://192.168.0.16:5000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var currentData, err_6;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, PostUsers.findOne({ name: req.body.user })];
+            case 1:
+                currentData = _a.sent();
+                console.log("this is the type of the current data !!!");
+                // TODO: this doesnt auto generate or something
+                console.log(currentData);
+                currentData.friends.push(req.body.newFriend);
+                console.log(currentData);
+                return [4 /*yield*/, currentData.save()];
+            case 2:
+                _a.sent();
+                res.sendStatus(200);
+                return [3 /*break*/, 4];
+            case 3:
+                err_6 = _a.sent();
+                console.log(err_6);
+                res.json(err_6);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); });
+router.post('/adduser', cors("http://192.168.0.16:5000"), function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var post, savedPost, err_7;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                console.log("Creating new user");
+                console.log(req.body.name);
+                post = new PostUsers({
+                    name: req.body.name,
+                    friends: []
+                });
+                return [4 /*yield*/, post.save()];
+            case 1:
+                savedPost = _a.sent();
+                res.json(savedPost);
+                return [3 /*break*/, 3];
+            case 2:
+                err_7 = _a.sent();
+                console.log(err_7);
+                res.json(err_7);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); });

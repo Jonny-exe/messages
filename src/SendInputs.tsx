@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { postRequest } from './requests'
+import { GetFriends, GetWithFilter, PostRequest } from './requests.jsx'
 
 const SendInputs = (props: any) =>  {
 
@@ -9,9 +9,12 @@ const SendInputs = (props: any) =>  {
     setInputValue(event.target.value)
   }
 
+
   const postValue = () => {
-    console.log(inputValue)
-    postRequest(props.valueUser, "Someone else", inputValue)
+    // GetFriends(props.valueUser)
+    // GetWithFilter("", "")
+
+    PostRequest(props.valueUser, props.receiver, inputValue)
   }
 
   return (

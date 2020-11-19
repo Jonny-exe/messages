@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 console.log("creating scheme")
-const PostSchema = mongoose.Schema({
+const PostSchemaMessages = mongoose.Schema({
   sender: {
     type: String,
     required: true
@@ -19,5 +19,5 @@ const PostSchema = mongoose.Schema({
   }
 });
 console.log("Exporting POST")
-module.exports = mongoose.model('Posts1', PostSchema);
+module.exports = mongoose.model('PostMessages', PostSchemaMessages);
 console.log("Exported")

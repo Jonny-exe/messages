@@ -17,8 +17,11 @@ const bodyParser = require('body-parser');
 const port: string = "5000"
 const path = require('path');
 
+// This wont work either if you have node_modules backups
 // If you get error this port is already in use.
 // do: sudo killall -9 node command
+// if that doesnt work
+// do: sudo kill -9 <nodeprocessid>
 app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: true }));
 // You need to use this to allow something

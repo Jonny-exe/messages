@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { GetFriends } from './requests.jsx'
+
 const LoginInputs = (props: any) => {
   const [storeUser, setStoreUser] = useState(localStorage.getItem("user"))
   const handleInput = (event: any) => {
@@ -6,7 +8,8 @@ const LoginInputs = (props: any) => {
   }
 
   const sendInput = () => {
-    props.setUser(storeUser)
+    console.log("this is the new user" + storeUser)
+    props.saveUser(storeUser)
     props.setAlreadySet()
   }
 

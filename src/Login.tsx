@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import FriendAdd from './FriendAdd'
 import LoginInputs from './LoginInputs'
 
@@ -10,22 +10,17 @@ export const Login = (props: any) => {
   const [visible, setLoginVisibility] = useState(false)
   const [alreadySent, setAlreadySent] = useState(!isSet)
 
-  props.setUser(storedUser)
+  props.storeUser(storedUser)
   const handleToggle = () => {
     setLoginVisibility(!visible)
   }
-
-  const sendOnClick = () => {
-    toggleAlreadySet()
-  }
-
   const toggleAlreadySet = () => {
     setAlreadySent(!alreadySent)
     console.log("this is already sent " + alreadySent)
   }
 
   const logOut = () => {
-    props.setUser(undefined)
+    props.saveUser(undefined)
   }
 
   const logOutOnClick = () => {
@@ -41,8 +36,8 @@ export const Login = (props: any) => {
           <div className="loginToggle">
             <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
           </div>
-          <LoginInputs setUser={props.setUser} setAlreadySet={toggleAlreadySet}/>
-          <FriendAdd setUser={props.setUser}/>
+          <LoginInputs saveUser={props.saveUser} setAlreadySet={toggleAlreadySet}/>
+          <FriendAdd setNewFriend={props.setNewFriend}/>
         </div>
       )
     } else {
@@ -52,6 +47,7 @@ export const Login = (props: any) => {
             <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
           </div>
           <div className="logins">
+            <FriendAdd setNewFriend={props.setNewFriend} user={props.valueUser} />
             <button onClick={logOutOnClick}>Logout</button>
           </div>
         </div>

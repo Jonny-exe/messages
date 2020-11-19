@@ -1,9 +1,10 @@
 import React from 'react'
 import Message from './Message'
-import { GetWithFilter } from './requests'
+import { GetWithFilter, GetFriends } from './requests.jsx'
 
-export const MessagesAll = (props: any) =>  {
-  const {data} = GetWithFilter("jonny", "hi")
+export const MessagesAll = (props: any) => {
+  const { data } = GetWithFilter(props.sender, props.receiver)
+  console.log("this is data " + data)
   return (
     <div className="messages">
       {!data ? "loading" : data.map((content: any) => (
