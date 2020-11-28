@@ -11,8 +11,6 @@ const SendInputs = (props: any) =>  {
 
 
   const postValue = () => {
-    // GetFriends(props.valueUser)
-    // GetWithFilter("", "")
 
     PostRequest(props.valueUser, props.receiver, inputValue)
   }

@@ -5,21 +5,25 @@ import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
 import Login from './Login'
 import Friends from './Friends'
-import { AddFriend, GetFriends, GetWithFilter, PostRequest, AddUser } from './requests.jsx'
+import { AddUser } from './requests.jsx'
 
 const App = () => {
   // const { data, loading } = useFetch()
   // postRequest("this is the test", "this is the new test")
   const [user, setUser] = useState("")
   const [receiver, setReceiver] = useState("")
-  const [currentFriends, setCurrentFriends] = useState([])
+  const [friendAdded, setFriendAdded] = useState(false) //This is just a value to toggle when a friend gets added so the apt gets fetched
+
+  const toggleFriendAdded = () => {
+    setFriendAdded(!friendAdded)
+  }
 
   const storeUser = (userName: string) => {
     localStorage.setItem("user", userName)
     setUser(userName)
   }
 
-  
+
   const saveUser = (userName: string) => {
     storeUser(userName)
     AddUser(userName)
@@ -33,14 +37,14 @@ const App = () => {
     <div>
       <div className="app">
         <div className="friends">
-          <Friends  valueUser={user} setReceiver={setReceiverFunc} valueReceiver={receiver} />
+          <Friends friendAdded={friendAdded} valueUser={user} setReceiver={setReceiverFunc} valueReceiver={receiver} />
         </div>
         <div className="messages">
-          <MessagesAll valueUser={user} sender={user} receiver={receiver}/>
-          <SendInput valueUser={user} receiver={receiver}/>
+          <MessagesAll valueUser={user} sender={user} receiver={receiver} />
+          <SendInput valueUser={user} receiver={receiver} />
         </div>
         <div className="float">
-          <Login storeUser={storeUser} saveUser={saveUser} friends={currentFriends} valueUser={user}/>  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
+          <Login toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
         </div>
       </div>
     </div>

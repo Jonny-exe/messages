@@ -100,7 +100,6 @@ router.post('/addfriend', cors("http://192.168.0.16:5000"), async (req, res) => 
   try {
     const currentData = await PostUsers.findOne({name: req.body.user})
     console.log("this is the type of the current data !!!")
-    // TODO: this doesnt auto generate or something
     console.log(currentData)
     currentData.friends.push(req.body.newFriend) 
     console.log(currentData)

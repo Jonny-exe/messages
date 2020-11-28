@@ -4,14 +4,16 @@ import { AddFriend, GetFriends, PostRequest, AddUser } from './requests'
 export const FriendAdd = (props: any) => {
 
   const [friend, setFriend] = useState("")
+  const [data, setData] = useState({})
   const sendFriend = () => {
     AddFriend(props.user, friend)
-    console.log("Added a new friend")
+    props.toggleFriendAdded()
   }
 
   const changeFriend = (event: any) => {
     setFriend(event.target.value)
   }
+
   return (
     <div>
       <input type="text" onChange={changeFriend} placeholder="Friend Name"></input>

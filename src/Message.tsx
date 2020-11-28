@@ -2,7 +2,7 @@ import React from 'react'
 
 const Message = (props: any) => {
   const sender: string = props.data.sender
-  const text: string = props.data.textContent
+  const text: string = props.data.content
   const user: string = props.user
 
   return (
