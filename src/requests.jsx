@@ -63,6 +63,29 @@ export const DoesUserExist = (newUser) => {
   return state
 }
 
+export const UserLogin = (user, password, checkUser) => {
+  const url = 'http://192.168.0.16:5000/login';
+  const [state, setState] = useState({succesfullLogin: null, loading: true})
+  useEffect(() => {
+    var bodyContent = {
+      name: user,
+      pass: password
+    }
+    console.log("Login: bodyContent: ", bodyContent)
+    setState(state => ({data: state.data, loading: true}))
+    fetch(url, {
+      method: 'POST',
+      headers: headersContent,
+      credentials: 'same-origin',
+      body: JSON.stringify(bodyContent)
+    }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
+      console.log("UserLogin: json data", json)
+      setState({succesfullLogin: json, loading: false})
+    })
+  }, [checkUser])
+  return state
+}
+
 export const GetWithFilter = (filterSender, filterReceiver) => {
   const url = 'http://localhost:5000/getwithfilter';
   const [state, setState] = useState({data: null, loading: true})
@@ -105,11 +128,15 @@ export const AddFriend = (userContent, newFriendContent) => {
   })
 }
 
-export const AddUser = (user) => {
+export const AddUser = (username, password) => {
+  // TODO: Maybe this doesnt work without capital letters. Test it
   const url = 'http://192.168.0.16:5000/adduser';
   var bodyContent = {
-    name: user
+    name: username,
+    pass: password,
+    friends: []
   }
+  console.log("AddUser: bodyContent: ", bodyContent)
   fetch(url, {
     method: 'POST',
     headers: headersContent,

@@ -10,12 +10,6 @@ export const Login = (props: any) => {
   const [visible, setLoginVisibility] = useState(false)
   const [alreadySent, setAlreadySent] = useState(!isSet)
 
-
-
-
-
-
-
   props.storeUser(storedUser)
   const handleToggle = () => {
     setLoginVisibility(!visible)
@@ -41,7 +35,7 @@ export const Login = (props: any) => {
           <div className="loginToggle">
             <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
           </div>
-          <LoginInputs saveUser={props.saveUser} valueUser={props.valueUser} setAlreadySet={toggleAlreadySet} />
+          <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} setAlreadySet={toggleAlreadySet} />
           <FriendAdd setNewFriend={props.setNewFriend} />
         </div>
       )
@@ -53,7 +47,7 @@ export const Login = (props: any) => {
           </div>
           <div className="logins">
             <FriendAdd toggleFriendAdded={props.toggleFriendAdded} setNewFriend={props.setNewFriend} user={props.valueUser} />
-            <button onClick={logOutOnClick}>Logout</button>
+            <button className="logoutButton" onClick={logOutOnClick}>Logout</button>
           </div>
         </div>
       )

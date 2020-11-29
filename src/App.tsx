@@ -5,7 +5,7 @@ import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
 import Login from './Login'
 import Friends from './Friends'
-import { AddUser } from './requests.jsx'
+import { AddUser, UserLogin } from './requests.jsx'
 
 const App = () => {
   // const { data, loading } = useFetch()
@@ -23,10 +23,13 @@ const App = () => {
     setUser(userName)
   }
 
+  const saveUser = (username: string, password: string) => {
+    storeUser(username)
+    AddUser(username, password)
+  }
 
-  const saveUser = (userName: string) => {
-    storeUser(userName)
-    AddUser(userName)
+  const login = (username: string) => {
+    storeUser(username)
   }
 
   const setReceiverFunc = (name: string) => {
@@ -44,7 +47,7 @@ const App = () => {
           <SendInput valueUser={user} receiver={receiver} />
         </div>
         <div className="float">
-          <Login toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
+          <Login login={login} toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
         </div>
       </div>
     </div>

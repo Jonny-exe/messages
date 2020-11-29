@@ -44,11 +44,20 @@
 }
 
 .loginTextInput, .friendAddInput {
+  padding: 2%;
   margin: 1%;
-  width: 92%;
+  width: 91%;
+  border-radius: 5px;
+  border-color: white;
 }
 
-.friendAddButton {
+.loginWarningInput {
+  border-color: rgb(255, 136, 105);
+}
+
+/* TODO: friendAddButton and logoutbutton are not exactly the same, make them
+the same  */
+.friendAddButton, .logoutButton {
   width: 96%;
   margin-top: 1%;
   margin-bottom: 1%;
