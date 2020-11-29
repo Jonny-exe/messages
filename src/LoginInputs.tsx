@@ -36,7 +36,7 @@ const LoginInputs = (props: any) => {
 
   return (
     <div className="logins">
-      <input type="text" onChange={handleLogin} className={DoesExist != null ? DoesExist ? "loginTextInput" : "loginTextInput loginWarningInput": "loginTextInput loginWarningInput" } placeholder="Username"></input>
+      <input type="text" onChange={handleLogin} className="loginTextInput" placeholder="Username"></input>
       <input type="text" onChange={handleRegister} className="loginTextInput" placeholder="Password"></input>
       <button type="button" onClick={sendLogin} className="loginButtons">Login</button>
       <button type="button" onClick={sendRegister} className="loginButtons">Register</button>
