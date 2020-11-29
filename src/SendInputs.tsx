@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { GetFriends, GetWithFilter, PostRequest } from './requests.jsx'
+import { PostRequest } from './requests.jsx'
 
-const SendInputs = (props: any) =>  {
+const SendInputs = (props: any) => {
 
   const [inputValue, setInputValue] = useState("")
 
@@ -17,8 +17,10 @@ const SendInputs = (props: any) =>  {
 
   return (
     <div className="inputs">
-      <input type="text" className="sendInput" onChange={handleInput}/>
-		  <button type="button" className="sendButton" onClick={postValue}>Send</button>
+      <form>
+        <input type="text" className="sendInput" onChange={handleInput} />
+        <button type="button" className="sendButton" onClick={postValue}>Send</button>
+      </form>
     </div>
   )
 }

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { AddFriend, GetFriends, PostRequest, AddUser } from './requests'
+import React, { useState } from 'react'
+import { AddFriend } from './requests'
 
 export const FriendAdd = (props: any) => {
 
   const [friend, setFriend] = useState("")
-  const [data, setData] = useState({})
   const sendFriend = () => {
     AddFriend(props.user, friend)
     props.toggleFriendAdded()
@@ -15,9 +14,9 @@ export const FriendAdd = (props: any) => {
   }
 
   return (
-    <div>
-      <input type="text" onChange={changeFriend} placeholder="Friend Name"></input>
-      <button type="button" onClick={sendFriend}>Add friend</button>
+    <div className="friendAdd">
+      <input className="friendAddInput" type="text" onChange={changeFriend} placeholder="Friend Name"></input>
+      <button type="button" className="friendAddButton" onClick={sendFriend}>Add friend</button>
     </div>
   )
 }

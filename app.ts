@@ -16,6 +16,8 @@ const homeRoutes = require('./routes/posts')
 const bodyParser = require('body-parser');
 const port: string = "5000"
 const path = require('path');
+console.log("hi")
+            
 
 // This wont work either if you have node_modules backups
 // If you get error this port is already in use.
