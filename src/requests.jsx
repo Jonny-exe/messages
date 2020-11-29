@@ -63,7 +63,7 @@ export const DoesUserExist = (newUser) => {
   return state
 }
 
-export const UserLogin = (user, password, checkUser) => {
+export const UserLogin = (user, password) => {
   const url = 'http://192.168.0.16:5000/login';
   const [state, setState] = useState({succesfullLogin: null, loading: true})
   useEffect(() => {
@@ -82,7 +82,7 @@ export const UserLogin = (user, password, checkUser) => {
       console.log("UserLogin: json data", json)
       setState({succesfullLogin: json, loading: false})
     })
-  }, [checkUser])
+  }, [user, password])
   return state
 }
 

@@ -16,7 +16,7 @@ const LoginInputs = (props: any) => {
   }
 
   var { DoesExist } = DoesUserExist(storeUser)
-  var { succesfullLogin } = UserLogin(storeUser, storePassword, checkUser)
+  var { succesfullLogin } = UserLogin(storeUser, storePassword)
   const sendLogin = () => {
     if (succesfullLogin) {
       console.log("LoginInputs: SendInput: DoesExist ", DoesExist)
@@ -28,12 +28,13 @@ const LoginInputs = (props: any) => {
       setUserWarning(false)
     }
   }
-
+  console.log(succesfullLogin)
   const sendRegister = () => {
     if (!DoesExist) {
       setUserWarning(false)
       console.log("LoginInputs: SendInput: DoesExist ", DoesExist)
-      setCheckUser({ user: storeUser, pass: storePassword })
+      props.saveUser(storeUser, storePassword)
+      props.setAlreadySet()
       DoesExist = false
     } else {
       setUserWarning(true)
