@@ -5,7 +5,7 @@ import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
 import Login from './Login'
 import Friends from './Friends'
-import { AddUser, UserLogin } from './requests.jsx'
+import { AddUser } from './requests.jsx'
 
 const App = () => {
   // const { data, loading } = useFetch()

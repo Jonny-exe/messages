@@ -63,28 +63,28 @@ export const DoesUserExist = (newUser) => {
   return state
 }
 
-export const UserLogin = (user, password) => {
-  const url = 'http://192.168.0.16:5000/login';
-  const [state, setState] = useState({succesfullLogin: null, loading: true})
-  useEffect(() => {
-    var bodyContent = {
-      name: user,
-      pass: password
-    }
-    console.log("Login: bodyContent: ", bodyContent)
-    setState(state => ({data: state.data, loading: true}))
-    fetch(url, {
-      method: 'POST',
-      headers: headersContent,
-      credentials: 'same-origin',
-      body: JSON.stringify(bodyContent)
-    }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
-      console.log("UserLogin: json data", json)
-      setState({succesfullLogin: json, loading: false})
-    })
-  }, [user, password])
-  return state
-}
+// export const UserLogin = (user, password) => {
+//   const url = 'http://192.168.0.16:5000/login';
+//   const [state, setState] = useState({succesfullLogin: null, loading: true})
+//   useEffect(() => {
+//     var bodyContent = {
+//       name: user,
+//       pass: password
+//     }
+//     console.log("Login: bodyContent: ", bodyContent)
+//     setState(state => ({data: state.data, loading: true}))
+//     fetch(url, {
+//       method: 'POST',
+//       headers: headersContent,
+//       credentials: 'same-origin',
+//       body: JSON.stringify(bodyContent)
+//     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
+//       console.log("UserLogin: json data", json)
+//       setState({succesfullLogin: json, loading: false})
+//     })
+//   }, [user, password])
+//   return state
+// }
 
 export const GetWithFilter = (filterSender, filterReceiver) => {
   const url = 'http://localhost:5000/getwithfilter';
@@ -105,6 +105,32 @@ export const GetWithFilter = (filterSender, filterReceiver) => {
       setState({data: json, loading: false})
     })
   }, [filterReceiver, filterSender])
+  return state
+}
+
+export const Test = (finalUser, finalPassword) => {
+  const [state, setState] = useState({ succesfullLogin: null, loading: true })
+  const url = 'http://192.168.0.16:5000/login';
+  useEffect(() => {
+    var bodyContent = {
+      name: finalUser,
+      pass: finalPassword
+    }
+    console.log("Login: bodyContent: ", bodyContent)
+    setState(state => ({ succesfullLogin: state.succesfullLogin, loading: true }))
+    fetch(url, {
+      method: 'POST',
+      headers: headersContent,
+      credentials: 'same-origin',
+      body: JSON.stringify(bodyContent)
+    }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
+      console.log("UserLogin: json data", json)
+      if (json != null) {
+        console.log("UserLogin: json set")
+        setState({ succesfullLogin: json, loading: false })
+      }
+    })
+  }, [finalPassword])
   return state
 }
 
