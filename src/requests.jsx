@@ -63,29 +63,6 @@ export const DoesUserExist = (newUser) => {
   return state
 }
 
-// export const UserLogin = (user, password) => {
-//   const url = 'http://192.168.0.16:5000/login';
-//   const [state, setState] = useState({succesfullLogin: null, loading: true})
-//   useEffect(() => {
-//     var bodyContent = {
-//       name: user,
-//       pass: password
-//     }
-//     console.log("Login: bodyContent: ", bodyContent)
-//     setState(state => ({data: state.data, loading: true}))
-//     fetch(url, {
-//       method: 'POST',
-//       headers: headersContent,
-//       credentials: 'same-origin',
-//       body: JSON.stringify(bodyContent)
-//     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
-//       console.log("UserLogin: json data", json)
-//       setState({succesfullLogin: json, loading: false})
-//     })
-//   }, [user, password])
-//   return state
-// }
-
 export const GetWithFilter = (filterSender, filterReceiver) => {
   const url = 'http://localhost:5000/getwithfilter';
   const [state, setState] = useState({data: null, loading: true})
@@ -108,7 +85,7 @@ export const GetWithFilter = (filterSender, filterReceiver) => {
   return state
 }
 
-export const Test = (finalUser, finalPassword) => {
+export const UserLogin = (finalUser, finalPassword) => {
   const [state, setState] = useState({ succesfullLogin: null, loading: true })
   const url = 'http://192.168.0.16:5000/login';
   useEffect(() => {

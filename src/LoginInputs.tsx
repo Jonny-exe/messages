@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {  Test } from './requests.jsx'
+import { UserLogin } from './requests.jsx'
 
 const LoginInputs = (props: any) => {
   const [storeUser, setStoreUser] = useState(localStorage.getItem("user"))
@@ -16,30 +16,7 @@ const LoginInputs = (props: any) => {
   }
 
   var DoesExist: boolean
-  var { loading, succesfullLogin } = Test(storeUser, finalPassword)
-  // const sendLogin = (success: boolean) => {
-  //   console.log("LoginInputs: sendLogin: successfuly", success)
-  //   console.log("LoginInputs: sendLogin: loading", loading)
-  //   var hi = succesfullLogin.getState()
-  //   console.log("Hi: ", hi)
-  //   // Ask if the data has been loaded
-  //   if (!loading) {
-  //     // Never null
-  //     if (succesfullLogin) {
-  //       console.log("LoginInputs: sendLogin: successfuly", succesfullLogin)
-  //       props.login(storeUser)
-  //       props.setAlreadySet()
-  //       DoesExist = false
-  //     } else {
-  //       setPasswordWarning(true)
-  //       setUserWarning(false)
-  //     }
-  //     succesfullLogin = null
-  //   } else {
-  //     console.log("LoginInputs: sendLogin: successfuly", succesfullLogin)
-  //     setTimeout(sendLogin, 1000, succesfullLogin)
-  //   }
-  // }
+  var { loading, succesfullLogin } = UserLogin(storeUser, finalPassword)
 
   useEffect(() => {
     console.log("LoginInputs: sendLogin: loading, succesfullLogin", loading, succesfullLogin)
