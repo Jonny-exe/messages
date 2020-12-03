@@ -4,8 +4,7 @@ import LoginInputs from './LoginInputs'
 
 
 export const Login = (props: any) => {
-
-  const isSet = localStorage.getItem("user") === "undefined"
+  const isSet = localStorage.getItem("user") === "null"
   const storedUser = localStorage.getItem("user")
   const [visible, setLoginVisibility] = useState(false)
   const [alreadySent, setAlreadySent] = useState(!isSet)
@@ -14,28 +13,25 @@ export const Login = (props: any) => {
   const handleToggle = () => {
     setLoginVisibility(!visible)
   }
-  const toggleAlreadySet = () => {
+  const toggleAlreadySent = () => {
     setAlreadySent(!alreadySent)
   }
 
-  const logOut = () => {
-    props.saveUser(undefined)
-  }
-
   const logOutOnClick = () => {
-    localStorage.setItem("user", "undefined")
-    logOut()
-    toggleAlreadySet()
+    localStorage.removeItem("user")
+    props.logOut()
+    toggleAlreadySent()
   }
 
   if (visible) {
+    console.log("Login: alreadySent, storedUser: ", alreadySent, storedUser)
     if (!alreadySent || storedUser === "undefined") {
       return (
         <div className="loginDiv">
           <div className="loginToggle">
             <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
           </div>
-          <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} setAlreadySet={toggleAlreadySet} />
+          <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} toggleAlreadySet={toggleAlreadySent} />
           <FriendAdd setNewFriend={props.setNewFriend} />
         </div>
       )

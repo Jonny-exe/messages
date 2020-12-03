@@ -28,8 +28,14 @@ const App = () => {
     AddUser(username, password)
   }
 
+
   const login = (username: string) => {
     storeUser(username)
+  }
+
+  const logOut = () => {
+    console.log("App: logOut")
+    setUser(undefined)
   }
 
   const setReceiverFunc = (name: string) => {
@@ -47,7 +53,7 @@ const App = () => {
           <SendInput valueUser={user} receiver={receiver} />
         </div>
         <div className="float">
-          <Login login={login} toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
+          <Login login={login} logOut={logOut} toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
         </div>
       </div>
     </div>

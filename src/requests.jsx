@@ -43,13 +43,13 @@ export const PostRequest = (userContent, reciverContent, textContent) => {
 
 export const DoesUserExist = (newUser) => {
   const url = 'http://192.168.0.16:5000/doesuserexist';
-  const [state, setState] = useState({DoesExist: null, loading: true})
+  const [state, setState] = useState({doesUserExist: null, loading: true})
   useEffect(() => {
     var bodyContent = {
       name: newUser
     }
     console.log("DoesUserExist: bodyContent: ", bodyContent, newUser)
-    setState(state => ({data: state.data, loading: true}))
+    setState(state => ({doesUserExist: state.doesUserExist, loading: true}))
     fetch(url, {
       method: 'POST',
       headers: headersContent,
@@ -57,7 +57,7 @@ export const DoesUserExist = (newUser) => {
       body: JSON.stringify(bodyContent)
     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
       console.log("DoesUserExist: json data", json, newUser)
-      setState({DoesExist: json, loading: false})
+      setState({doesUserExist: json, loading: false})
     })
   }, [newUser])
   return state
@@ -86,7 +86,7 @@ export const GetWithFilter = (filterSender, filterReceiver) => {
 }
 
 export const UserLogin = (finalUser, finalPassword) => {
-  const [state, setState] = useState({ succesfullLogin: null, loading: true })
+  const [state, setState] = useState({ successfulLogin: null, loading: true })
   const url = 'http://192.168.0.16:5000/login';
   useEffect(() => {
     var bodyContent = {
@@ -94,7 +94,7 @@ export const UserLogin = (finalUser, finalPassword) => {
       pass: finalPassword
     }
     console.log("Login: bodyContent: ", bodyContent)
-    setState(state => ({ succesfullLogin: state.succesfullLogin, loading: true }))
+    setState(state => ({ successfulLogin: state.successfulLogin, loading: true }))
     fetch(url, {
       method: 'POST',
       headers: headersContent,
@@ -104,7 +104,7 @@ export const UserLogin = (finalUser, finalPassword) => {
       console.log("UserLogin: json data", json)
       if (json != null) {
         console.log("UserLogin: json set")
-        setState({ succesfullLogin: json, loading: false })
+        setState({ successfulLogin: json, loading: false })
       }
     })
   }, [finalPassword])
