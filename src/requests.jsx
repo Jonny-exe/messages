@@ -137,7 +137,8 @@ export const AddUser = (username, password) => {
   var bodyContent = {
     name: username,
     pass: password,
-    friends: []
+    friends: [],
+    friendRequests: []
   }
   console.log("AddUser: bodyContent: ", bodyContent)
   fetch(url, {
@@ -153,13 +154,13 @@ export const AddUser = (username, password) => {
 
 export const GetFriends = (user, friendAdded) => {
   const url = 'http://192.168.0.16:5000/getfriends';
-  const [state, setState] = useState({data: null, loading: true})
+  const [state, setState] = useState({data: null})
 
   useEffect(() => {
     var bodyContent = {
       name: user
     }
-    setState(state => ({data: state.data, loading: true}))
+    setState(state => ({data: state.data}))
     fetch(url, {
       method: 'POST',
       headers: headersContent,
@@ -167,7 +168,7 @@ export const GetFriends = (user, friendAdded) => {
       body: JSON.stringify(bodyContent)
     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
       console.log("GetFriends: ", json)
-      setState({data: json, loading: false})
+      setState({data: json})
     })
   }, [user, friendAdded])
 
