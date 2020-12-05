@@ -8,7 +8,7 @@ export const MessagesAll = (props: any) => {
   if (props.receiver == "") {
     return (
       <div className="messages" >
-        <h2>To start chatting select a receiver</h2>
+        <span className="noMessagesText">To start chatting select a receiver</span>
       </div>
     )
   } else {

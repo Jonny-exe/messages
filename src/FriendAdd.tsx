@@ -15,8 +15,8 @@ export const FriendAdd = (props: any) => {
 
   return (
     <div className="friendAdd">
-      <input className="friendAddInput" type="text" onChange={changeFriend} placeholder="Friend Name"></input>
-      <button type="button" className="friendAddButton" onClick={sendFriend}>Add friend</button>
+      <input className="friendAddInput textInput" type="text" onChange={changeFriend} placeholder="Friend Name"></input>
+      <button type="button" className="friendAddButton button" onClick={sendFriend}>Add friend</button>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FriendAdd from './FriendAdd'
 import LoginInputs from './LoginInputs'
+import FriendRequests from './FriendRequests'
 
 
 export const Login = (props: any) => {
@@ -29,21 +30,25 @@ export const Login = (props: any) => {
       return (
         <div className="loginDiv">
           <div className="loginToggle">
-            <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+            <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
           </div>
           <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} toggleAlreadySet={toggleAlreadySent} />
           <FriendAdd setNewFriend={props.setNewFriend} />
+          <FriendRequests valueUser={props.valueUser} />
         </div>
       )
     } else {
       return (
         <div className="loginDiv">
           <div className="loginToggle">
-            <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+            <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
           </div>
           <div className="logins">
             <FriendAdd toggleFriendAdded={props.toggleFriendAdded} setNewFriend={props.setNewFriend} user={props.valueUser} />
-            <button className="logoutButton" onClick={logOutOnClick}>Logout</button>
+            <div className="friendAdd">
+              <button className="logoutButton button" onClick={logOutOnClick}>Logout</button>
+            </div>
+            <FriendRequests valueUser={props.valueUser} />
           </div>
         </div>
       )
@@ -51,7 +56,7 @@ export const Login = (props: any) => {
   }
   return (
     <div className="loginToggle">
-      <button type="button" onClick={handleToggle} className="loginToggle" >Toggle</button>
+      <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
     </div>
   )
 }

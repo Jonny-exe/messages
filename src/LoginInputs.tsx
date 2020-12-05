@@ -21,7 +21,7 @@ const LoginInputs = (props: any) => {
 
   useEffect(() => {
     console.log("LoginInputs: sendLogin: loading, successfulLogin", loading, successfulLogin)
-    // Ask if the data has been loaded
+    // Ask if the data has been loaded, this cant be done with successfulLogin because it may be still the old value
     if (!loading) {
       // Never null
       if (successfulLogin) {
@@ -30,8 +30,8 @@ const LoginInputs = (props: any) => {
         props.toggleAlreadySet()
         doesUserExist = false
       } else {
-        // setPasswordWarning(true)
-        // setUserWarning(false)
+        setPasswordWarning(true)
+        setUserWarning(false)
       }
       successfulLogin = null
     }
@@ -41,7 +41,7 @@ const LoginInputs = (props: any) => {
   useEffect(() => {
     console.log("LoginInputs: sendRegister: loading, successfulLogin", loading, successfulLogin)
     // Ask if the data has been loaded
-    if (!doesUserExist && doesUserExist != null) {
+    if (!loading && !doesUserExist) {
       if (storeUser != "" && storeUser != "null") {
         setUserWarning(false)
         console.log("LoginInputs: SendInput: doesUserExist ", doesUserExist)
@@ -55,18 +55,18 @@ const LoginInputs = (props: any) => {
     }
   }, [doesUserExist])
 
-
+  console.log(doesUserExist)
   return (
     <div className="logins">
-      <input type="text" onChange={handleLogin} className="loginTextInput" placeholder="Username"></input>
-      <input type="text" onChange={handleRegister} className="loginTextInput" placeholder="Password"></input>
+      <input type="text" onChange={handleLogin} className="loginTextInput textInput" placeholder="Username"></input>
+      <input type="text" onChange={handleRegister} className="loginTextInput textInput" placeholder="Password"></input>
       <button type="button" onClick={() => {
         setFinalLoginPassword(storePassword)
-      }} className="loginButtons">Login</button>
+      }} className="loginButtons button">Login</button>
       <button type="button" onClick={() => {
         setFinalRegisterUser(storeUser)
-      }} className="loginButtons">Register</button>
-      <span className="userExistsWarning"> {userWarning != undefined ? userWarning ? "User already exists ❌" : "": ""} </span>
+      }} className="loginButtons button">Register</button>
+      <span className="userExistsWarning"> {userWarning != undefined ? userWarning ? "User already exists ❌" : "" : ""} </span>
       <span className="userExistsWarning"> {passwordWarning != undefined ? passwordWarning ? "Wrong Password or username ❌" : "" : ""} </span>
     </div>
   )

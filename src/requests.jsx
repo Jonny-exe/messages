@@ -63,6 +63,29 @@ export const DoesUserExist = (newUser) => {
   return state
 }
 
+
+export const GetFriendRequests = (user) => {
+  const url = 'http://localhost:5000/getfriendrequests';
+  const [state, setState] = useState({data: null, loading: true})
+  useEffect(() => {
+    var bodyContent = {
+      name: user
+    }
+    console.log("GetFriendRequests: bodyContent: ", bodyContent)
+    setState(state => ({data: state.data, loading: true}))
+    fetch(url, {
+      method: 'POST',
+      headers: headersContent,
+      credentials: 'same-origin',
+      body: JSON.stringify(bodyContent)
+    }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
+      console.log("GetFriendRequests: json data: ", json)
+      setState({data: json, loading: false})
+    })
+  }, [])
+  return state
+}
+
 export const GetWithFilter = (filterSender, filterReceiver) => {
   const url = 'http://localhost:5000/getwithfilter';
   const [state, setState] = useState({data: null, loading: true})
@@ -115,7 +138,7 @@ export const AddFriend = (userContent, newFriendContent) => {
   const url = 'http://192.168.0.16:5000/addfriend';
   // var jsonData
   var bodyContent = {
-    user: userContent,
+    name: userContent,
     newFriend: newFriendContent
   }
 
