@@ -154,6 +154,49 @@ export const AddFriend = (userContent, newFriendContent) => {
   })
 }
 
+export const AddFriendRequest = (userContent, newFriendContent) => {
+  const url = 'http://192.168.0.16:5000/addfriendrequest';
+  // var jsonData
+  var bodyContent = {
+    name: userContent,
+    newFriend: newFriendContent
+  }
+
+  console.log("AddFriendRequest: ", bodyContent)
+  fetch(url, {
+    method: 'POST',
+    headers: headersContent,
+    credentials: 'same-origin',
+    body: JSON.stringify(bodyContent)
+  }).then(json => {
+    console.log("AddFriendRequest: ", json)
+    return json
+  })
+}
+
+
+export const RemoveFriendRequest = (user, friendToRemove) => {
+  const url = 'http://192.168.0.16:5000/removefriendrequest';
+  // var jsonData
+  var bodyContent = {
+    name: user,
+    FriendToRemove: friendToRemove
+  }
+
+  console.log("RemoveFriendRequest: ", bodyContent)
+  fetch(url, {
+    method: 'POST',
+    headers: headersContent,
+    credentials: 'same-origin',
+    body: JSON.stringify(bodyContent)
+  }).then(json => {
+    console.log("RemoveFriendRequest: ", json)
+    return json
+  })
+}
+
+
+
 export const AddUser = (username, password) => {
   // TODO: Maybe this doesnt work without capital letters. Test it
   const url = 'http://192.168.0.16:5000/adduser';
@@ -177,7 +220,7 @@ export const AddUser = (username, password) => {
 
 export const GetFriends = (user, friendAdded) => {
   const url = 'http://192.168.0.16:5000/getfriends';
-  const [state, setState] = useState({data: null})
+  const [state, setState] = useState({friends: null})
 
   useEffect(() => {
     var bodyContent = {
@@ -191,7 +234,7 @@ export const GetFriends = (user, friendAdded) => {
       body: JSON.stringify(bodyContent)
     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
       console.log("GetFriends: ", json)
-      setState({data: json})
+      setState({friends: json})
     })
   }, [user, friendAdded])
 

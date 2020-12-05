@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { AddFriend } from './requests'
+import { AddFriendRequest } from './requests'
 
 export const FriendAdd = (props: any) => {
 
   const [friend, setFriend] = useState("")
   const sendFriend = () => {
-    AddFriend(props.user, friend)
+    AddFriendRequest(props.user, friend)
     props.toggleFriendAdded()
   }
 
