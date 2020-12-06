@@ -10,18 +10,6 @@ const headersContent = {
   // "Content-Type": "application/json"
 }
 
-export const useFetch = () => {
-  const [state, setState] = useState({data: null, loading: true})
-
-  useEffect(() => {
-    setState(state => ({data: state.data, loading: true}))
-    fetch(url).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
-      console.log(json)
-      setState({data: json, loading: false})
-    })
-  }, [])
-  return state
-}
 
 export const PostRequest = (userContent, reciverContent, textContent) => {
   console.log("This is the texxt content: " + textContent)
@@ -66,13 +54,13 @@ export const DoesUserExist = (newUser) => {
 
 export const GetFriendRequests = (user) => {
   const url = 'http://localhost:5000/getfriendrequests';
-  const [state, setState] = useState({data: null, loading: true})
+  const [state, setState] = useState({requests: null, loading: true})
   useEffect(() => {
     var bodyContent = {
       name: user
     }
     console.log("GetFriendRequests: bodyContent: ", bodyContent)
-    setState(state => ({data: state.data, loading: true}))
+    setState(state => ({requests: state.requests, loading: true}))
     fetch(url, {
       method: 'POST',
       headers: headersContent,
@@ -80,7 +68,7 @@ export const GetFriendRequests = (user) => {
       body: JSON.stringify(bodyContent)
     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
       console.log("GetFriendRequests: json data: ", json)
-      setState({data: json, loading: false})
+      setState({requests: json, loading: false})
     })
   }, [])
   return state
@@ -88,13 +76,13 @@ export const GetFriendRequests = (user) => {
 
 export const GetWithFilter = (filterSender, filterReceiver) => {
   const url = 'http://localhost:5000/getwithfilter';
-  const [state, setState] = useState({data: null, loading: true})
+  const [state, setState] = useState({messages: null, loading: true})
   useEffect(() => {
     var bodyContent = {
       sender: filterSender,
       receiver: filterReceiver
     }
-    setState(state => ({data: state.data, loading: true}))
+    setState(state => ({messages: state.messages, loading: true}))
     fetch(url, {
       method: 'POST',
       headers: headersContent,
@@ -102,7 +90,7 @@ export const GetWithFilter = (filterSender, filterReceiver) => {
       body: JSON.stringify(bodyContent)
     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
       console.log("GetWithFilter: json data: ", json)
-      setState({data: json, loading: false})
+      setState({messages: json, loading: false})
     })
   }, [filterReceiver, filterSender])
   return state

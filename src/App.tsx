@@ -8,7 +8,6 @@ import Friends from './Friends'
 import { AddUser } from './requests.jsx'
 
 const App = () => {
-  // const { data, loading } = useFetch()
   // postRequest("this is the test", "this is the new test")
   const [user, setUser] = useState("")
   const [receiver, setReceiver] = useState("")
