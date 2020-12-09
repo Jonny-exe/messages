@@ -29,7 +29,7 @@ export const Login = (props: any) => {
     if (!alreadySent || storedUser === "undefined") {
       return (
         <div className="loginDiv">
-          <div className="loginToggle">
+          <div className="loginToggleDiv">
             <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
           </div>
           <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} toggleAlreadySet={toggleAlreadySent} />
@@ -40,7 +40,7 @@ export const Login = (props: any) => {
     } else {
       return (
         <div className="loginDiv">
-          <div className="loginToggle">
+          <div className="loginToggleDiv">
             <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
           </div>
           <div className="logins">
@@ -55,7 +55,7 @@ export const Login = (props: any) => {
     }
   }
   return (
-    <div className="loginToggle">
+    <div className="loginToggleDiv">
       <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
     </div>
   )

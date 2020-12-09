@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react'
 import './App.css'
 import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
 import Login from './Login'
 import Friends from './Friends'
+import Logo from './Logo'
 import { AddUser } from './requests.jsx'
 
 const App = () => {
@@ -45,6 +45,7 @@ const App = () => {
     <div>
       <div className="app">
         <div className="friends">
+          <Logo valueUser={user} valueReciever={receiver}/>
           <Friends friendAdded={friendAdded} valueUser={user} setReceiver={setReceiverFunc} valueReceiver={receiver} />
         </div>
         <div className="messages">

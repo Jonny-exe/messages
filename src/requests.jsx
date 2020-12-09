@@ -10,7 +10,6 @@ const headersContent = {
   // "Content-Type": "application/json"
 }
 
-
 export const PostRequest = (userContent, reciverContent, textContent) => {
   console.log("This is the texxt content: " + textContent)
   var bodyContent = {
@@ -29,15 +28,80 @@ export const PostRequest = (userContent, reciverContent, textContent) => {
   })
 }
 
+export const UploadProfileImage = (user, image, areaToCrop) => {
+  const bodyContent = {
+    name: user,
+    image: image,
+      areatocrop : areaToCrop
+  }
+  console.log("UploadProfileImage", bodyContent)
+  fetch(url + "uploadprofileimage", {
+    method: 'POST',
+    headers: headersContent,
+    credentials: 'same-origin',
+    body: JSON.stringify(bodyContent)
+  }).then(res => res.json()).then(resJson => {
+    console.log("PostRequest: ", resJson)
+    return resJson
+  })
+}
+
+export const GetProfileImage = (user) => {
+  const [state, setState] = useState({picture: null, loading: true})
+  useEffect(() => {
+    var bodyContent = {
+      name: user
+    }
+    console.log("GetProfileImage: bodyContent: ", bodyContent)
+    setState(state => ({picture: state.picture, loading: true}))
+    fetch(url + "getprofileimage", {
+      method: 'POST',
+      headers: headersContent,
+      credentials: 'same-origin',
+      body: JSON.stringify(bodyContent)
+    }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
+      console.log("GetProfileImage: json data: ", json)
+      setState({picture: json, loading: false})
+    })
+  }, [user])
+  return state
+}
+
+export const UserLogin = (finalUser, finalPassword) => {
+  const [state, setState] = useState({successfulLogin: null, loginLoading: true})
+  const url = 'http://192.168.0.16:5000/login';
+  useEffect(() => {
+    var bodyContent = {
+      name: finalUser,
+      pass: finalPassword
+    }
+    console.log("Login: bodyContent: ", bodyContent)
+    setState(state => ({successfulLogin: null, loginLoading: true}))
+    fetch(url, {
+      method: 'POST',
+      headers: headersContent,
+      credentials: 'same-origin',
+      body: JSON.stringify(bodyContent)
+    }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
+      console.log("UserLogin: json data", json)
+      if (json != null) {
+        console.log("UserLogin: json set")
+        setState({successfulLogin: json, loginLoading: false})
+      }
+    })
+  }, [finalPassword])
+  return state
+}
+
 export const DoesUserExist = (newUser) => {
   const url = 'http://192.168.0.16:5000/doesuserexist';
-  const [state, setState] = useState({doesUserExist: null, loading: true})
+  const [state, setState] = useState({doesUserExist: null, registerLoading: true})
   useEffect(() => {
     var bodyContent = {
       name: newUser
     }
     console.log("DoesUserExist: bodyContent: ", bodyContent, newUser)
-    setState(state => ({doesUserExist: state.doesUserExist, loading: true}))
+    setState({doesUserExist: null, registerLoading: true})
     fetch(url, {
       method: 'POST',
       headers: headersContent,
@@ -45,12 +109,11 @@ export const DoesUserExist = (newUser) => {
       body: JSON.stringify(bodyContent)
     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
       console.log("DoesUserExist: json data", json, newUser)
-      setState({doesUserExist: json, loading: false})
+      setState({doesUserExist: json, registerLoading: false})
     })
   }, [newUser])
   return state
 }
-
 
 export const GetFriendRequests = (user) => {
   const url = 'http://localhost:5000/getfriendrequests';
@@ -96,31 +159,6 @@ export const GetWithFilter = (filterSender, filterReceiver) => {
   return state
 }
 
-export const UserLogin = (finalUser, finalPassword) => {
-  const [state, setState] = useState({ successfulLogin: null, loading: true })
-  const url = 'http://192.168.0.16:5000/login';
-  useEffect(() => {
-    var bodyContent = {
-      name: finalUser,
-      pass: finalPassword
-    }
-    console.log("Login: bodyContent: ", bodyContent)
-    setState(state => ({ successfulLogin: state.successfulLogin, loading: true }))
-    fetch(url, {
-      method: 'POST',
-      headers: headersContent,
-      credentials: 'same-origin',
-      body: JSON.stringify(bodyContent)
-    }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
-      console.log("UserLogin: json data", json)
-      if (json != null) {
-        console.log("UserLogin: json set")
-        setState({ successfulLogin: json, loading: false })
-      }
-    })
-  }, [finalPassword])
-  return state
-}
 
 export const AddFriend = (userContent, newFriendContent) => {
   const url = 'http://192.168.0.16:5000/addfriend';
@@ -162,7 +200,6 @@ export const AddFriendRequest = (userContent, newFriendContent) => {
   })
 }
 
-
 export const RemoveFriendRequest = (user, friendToRemove) => {
   const url = 'http://192.168.0.16:5000/removefriendrequest';
   // var jsonData
@@ -183,8 +220,6 @@ export const RemoveFriendRequest = (user, friendToRemove) => {
   })
 }
 
-
-
 export const AddUser = (username, password) => {
   // TODO: Maybe this doesnt work without capital letters. Test it
   const url = 'http://192.168.0.16:5000/adduser';
@@ -192,7 +227,8 @@ export const AddUser = (username, password) => {
     name: username,
     pass: password,
     friends: [],
-    friendRequests: []
+    friendRequests: [],
+    profileImage: ""
   }
   console.log("AddUser: bodyContent: ", bodyContent)
   fetch(url, {

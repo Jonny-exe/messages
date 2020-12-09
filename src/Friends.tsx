@@ -6,10 +6,9 @@ const Friends = (props: any) => {
   props.setReceiver(props.valueReceiver)
   var { friends } = GetFriends(props.valueUser, props.friendAdded)
   console.log("Friends: ", friends)
-  // {!data && !data.friends ? "loading" : data.friends.map((name: any) => (<Friend name={name} setReceiver={props.setReceiver} />))}
   return (
     <div>
-      <span className="currentUser">{props.valueUser}, {props.valueReceiver}</span>
+      <span className="currentUser">{props.valueUser}</span>
       <div> {!friends ? "Loading friends" : friends.map((name: any) => (<Friend name={name} setReceiver={props.setReceiver} />))} </div>
     </div>
   )
