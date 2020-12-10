@@ -57,8 +57,10 @@ const Logo = (props: any) => {
           <button type="button" className="closeHeaderButton" onClick={closeModal}>&times;</button>
         </div>
         <div className="modalBody">
-          <input type="file" onChange={handleFile} className="changeProfileImage" name="image" />
-          <button type="button" onClick={sendFile}>Upload File</button>
+            <div>
+          <input type="file" onChange={handleFile} className="changeProfileImage uploadImageInput" name="image" />
+          <button type="button" className="sendFile" onClick={sendFile}>Upload File</button>
+            </div>
           <div className="croper">
             <Croper handleAreaToCrop={handleAreaToCrop} image={image} />
           </div>
