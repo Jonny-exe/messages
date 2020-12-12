@@ -8,7 +8,6 @@ const Friends = (props: any) => {
   console.log("Friends: ", friends)
   return (
     <div>
-      <span className="currentUser">{props.valueUser}</span>
       <div> {!friends ? "Loading friends" : friends.map((name: any) => (<Friend name={name} setReceiver={props.setReceiver} />))} </div>
     </div>
   )

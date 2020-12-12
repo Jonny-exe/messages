@@ -6,7 +6,7 @@ export const MessagesAll = (props: any) => {
   const { messages } = GetWithFilter(props.sender, props.receiver)
   console.log("MessagesAll: data: ", messages)
   console.log(messages)
-  if (props.receiver == "") {
+  if (props.receiver === "") {
     return (
       <div className="messages" >
         <span className="noMessagesText">To start chatting select a receiver</span>

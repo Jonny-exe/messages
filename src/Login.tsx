@@ -10,8 +10,13 @@ export const Login = (props: any) => {
   const [visible, setLoginVisibility] = useState(false)
   const [alreadySent, setAlreadySent] = useState(!isSet)
 
-  props.storeUser(storedUser)
-  const handleToggle = () =>
+  useEffect(() => {
+    if (storedUser != null) {
+      console.log("Login: set new user", storedUser)
+      props.storeUser(storedUser)
+    }
+  }, [])
+  const handleToggle = () => {
     setLoginVisibility(!visible)
   }
   const toggleAlreadySent = () => {

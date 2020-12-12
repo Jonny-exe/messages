@@ -4,7 +4,7 @@ import Cropper from 'react-easy-crop'
 const Croper = (props: any) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+  const onCropComplete = useCallback((croppedAreaPixels) => {
     console.log(croppedAreaPixels)
     props.handleAreaToCrop(croppedAreaPixels)
     // props.crop(croppedAr ea, croppedAreaPixels)

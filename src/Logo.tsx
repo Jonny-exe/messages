@@ -50,6 +50,9 @@ const Logo = (props: any) => {
     <div>
       <div className={`overlay ${modal ? "overlayActive" : ""}`} onClick={closeModal}>
       </div>
+      <div className="userName">
+        <span className="currentUser">{props.valueUser == "null" ? "Please log in or register" : props.valueUser}</span>
+      </div>
       <img src={image} onClick={imageOnClick} className="profileImage" ></img>
       <div className={`modal ${modal ? "modalActive" : ""}`}>
         <div className="modalHeader">

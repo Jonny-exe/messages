@@ -60,7 +60,7 @@ export const GetProfileImage = (user) => {
       credentials: 'same-origin',
       body: JSON.stringify(bodyContent)
     }).then(data => data.text()).then(text => JSON.parse(text)).then(json => {
-      console.log("GetProfileImage: json data: ", json)
+      console.log("GetProfileImage: got image")
       setState({picture: json, loading: false})
     })
   }, [user])
@@ -76,7 +76,7 @@ export const UserLogin = (finalUser, finalPassword) => {
       pass: finalPassword
     }
     console.log("Login: bodyContent: ", bodyContent)
-    setState(state => ({successfulLogin: null, loginLoading: true}))
+    setState({successfulLogin: null, loginLoading: true})
     fetch(url, {
       method: 'POST',
       headers: headersContent,

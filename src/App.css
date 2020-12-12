@@ -10,7 +10,8 @@
   outline: none;
 }
 
-.sendInput, .sendButton {
+.sendInput,
+.sendButton {
   display: inline-block;
   min-height: 30px;
   height: 30px;
@@ -68,15 +69,14 @@ input:focus::-webkit-input-placeholder {
   border-bottom: 2px solid #4285F4;
 }
 
-
 input {
   border: none;
   background: transparent;
   border-bottom: 2px solid #4285F4;
 }
 
-
-.logins, .friendAdd {
+.logins,
+.friendAdd {
   text-align: center;
   margin: 1%;
   overflow: hidden;
@@ -91,14 +91,16 @@ input {
   margin: 1%;
 }
 
-.loginTextInput, .friendAddInput {
+.loginTextInput,
+.friendAddInput {
   margin: 1%;
   width: 91%;
 }
 
 /* TODO: friendAddButton and logoutbutton are not exactly the same, make them
 the same  */
-.friendAddButton, .logoutButton {
+.friendAddButton,
+.logoutButton {
   width: 96%;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -191,6 +193,8 @@ the same  */
 }
 
 .profileImage {
+  margin: 2%;
+  border-radius: 5%;
   width: 100%;
   height: 100%;
   transition-duration: 0.1s;
@@ -204,9 +208,8 @@ the same  */
   overflow: hidden;
 }
 
-
 .changeProfileImage input[type="file"] {
-    background-color: blue;
+  background-color: blue;
 }
 
 .profile {
@@ -297,15 +300,19 @@ the same  */
 }
 
 .uploadImageInput {
-    border: none;
+  border: none;
 }
 
 .sendFile {
-    position: relative;
-    margin: 2%;
+  position: relative;
+  margin: 2%;
 }
-
 
 input[type="file"] {
   position: relative;
+}
+
+.userName {
+  text-align: center;
+  margin: 2%;
 }
