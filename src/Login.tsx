@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FriendAdd from './FriendAdd'
 import LoginInputs from './LoginInputs'
 import FriendRequests from './FriendRequests'
@@ -11,7 +11,7 @@ export const Login = (props: any) => {
   const [alreadySent, setAlreadySent] = useState(!isSet)
 
   props.storeUser(storedUser)
-  const handleToggle = () => {
+  const handleToggle = () =>
     setLoginVisibility(!visible)
   }
   const toggleAlreadySent = () => {

@@ -304,3 +304,8 @@ the same  */
     position: relative;
     margin: 2%;
 }
+
+
+input[type="file"] {
+  position: relative;
+}
