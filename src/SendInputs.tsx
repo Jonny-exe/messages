@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { PostRequest } from './requests.jsx'
+import { SendMessage } from './requests.jsx'
 
 const SendInputs = (props: any) => {
-
   const [inputValue, setInputValue] = useState("")
 
   const handleInput = (event: any) => {
@@ -11,16 +10,13 @@ const SendInputs = (props: any) => {
 
 
   const postValue = () => {
-
-    PostRequest(props.valueUser, props.receiver, inputValue)
+    SendMessage(props.valueUser, props.receiver, inputValue)
   }
 
   return (
     <div className="inputs">
-      <form>
-        <input type="text" className="sendInput textInput" onChange={handleInput} />
-        <button type="button" className="sendButton button" onClick={postValue}> Send </button>
-      </form>
+      <input type="text" className="sendInput textInput" onChange={handleInput} />
+      <button type="button" className="sendButton button" onClick={postValue}> Send </button>
     </div>
   )
 }

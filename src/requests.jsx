@@ -10,7 +10,7 @@ const headersContent = {
   // "Access-Control-Allow-Headers": "x-requested-with, Content-Type, origin, authorization, accept, client-security-token",
   // "Content-Type": "application/jso
 }
-export const PostRequest = (userContent, reciverContent, textContent) => {
+export const SendMessage = (userContent, reciverContent, textContent) => {
   console.log("This is the texxt content: " + textContent)
   const thisURL = url + "addmessage"
   var bodyContent = {
@@ -24,7 +24,7 @@ export const PostRequest = (userContent, reciverContent, textContent) => {
     credentials: 'same-origin',
     body: JSON.stringify(bodyContent)
   }).then(res => res.json()).then(resJson => {
-    console.log("PostRequest: ", resJson)
+    console.log("SendMessage: ", resJson)
     return resJson
   })
 }
@@ -43,7 +43,7 @@ export const UploadProfileImage = (user, image, areaToCrop) => {
     credentials: 'same-origin',
     body: JSON.stringify(bodyContent)
   }).then(res => res.json()).then(resJson => {
-    console.log("PostRequest: ", resJson)
+    console.log("SendMessage: ", resJson)
     return resJson
   })
 }
