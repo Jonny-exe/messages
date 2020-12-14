@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-
 // This is just to have different test and production urls
-const url = process.env.REQUEST_URL;
+// const url = "http://localhost:5000/";
+const url = process.env.REACT_APP_REQUEST_URL
+console.log(process.env)
 const headersContent = {
   // "Origin" : "http://localhost:3000"
   // "Access-Control-Allow-Credentials": "true",
