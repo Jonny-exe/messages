@@ -11,7 +11,7 @@ export const Login = (props: any) => {
   const [alreadySent, setAlreadySent] = useState(!isSet)
 
   useEffect(() => {
-    if (storedUser != null) {
+    if (storedUser != "null" || storedUser != null) {
       console.log("Login: set new user", storedUser)
       props.storeUser(storedUser)
     }
