@@ -18,6 +18,7 @@ const FriendRequest = (props: any) => {
       }} className="friendRequestButton button"> ⤬ </button>
       <button type="button" onClick={() => {
         acceptFriend(props.name)
+        props.increaseFriendsAcceptedCount()
       }} className="friendRequestButton button"> ✓ </button>
     </div>
   )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 // This is just to have different test and production urls
 // const url = "http://localhost:5000/";
 const url = process.env.REACT_APP_REQUEST_URL
@@ -142,7 +142,7 @@ export const GetFriendRequests = (user) => {
   return state
 }
 
-export const GetWithFilter = (filterSender, filterReceiver) => {
+export const GetWithFilter = (filterSender, filterReceiver, messagesSentCount) => {
   const [state, setState] = useState({ messages: null, loading: true })
   const thisURL = url + "getwithfilter"
   useEffect(() => {
@@ -160,7 +160,7 @@ export const GetWithFilter = (filterSender, filterReceiver) => {
       console.log("GetWithFilter: json data: ", json)
       setState({ messages: json, loading: false })
     })
-  }, [filterReceiver, filterSender])
+  }, [filterReceiver, filterSender, messagesSentCount])
   return state
 }
 
@@ -243,7 +243,7 @@ export const AddUser = (username, password) => {
   })
 }
 
-export const GetFriends = (user, friendAdded) => {
+export const GetFriends = (user, friendAdded, friendsAcceptedCount) => {
   const [state, setState] = useState({ friends: null })
   const thisURL = url + "getfriends"
 
@@ -261,7 +261,7 @@ export const GetFriends = (user, friendAdded) => {
       console.log("GetFriends: ", json)
       setState({ friends: json })
     })
-  }, [user, friendAdded])
+  }, [user, friendAdded, friendsAcceptedCount])
 
   return state
 }

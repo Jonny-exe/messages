@@ -39,7 +39,7 @@ export const Login = (props: any) => {
           </div>
           <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} toggleAlreadySet={toggleAlreadySent} />
           <FriendAdd setNewFriend={props.setNewFriend} />
-          <FriendRequests valueUser={props.valueUser} />
+          <FriendRequests increaseFriendsAcceptedCount={props.increaseFriendsAcceptedCount} valueUser={props.valueUser} />
         </div>
       )
     } else {
@@ -53,7 +53,7 @@ export const Login = (props: any) => {
             <div className="friendAdd">
               <button className="logoutButton button" onClick={logOutOnClick}>Logout</button>
             </div>
-            <FriendRequests valueUser={props.valueUser} />
+            <FriendRequests increaseFriendsAcceptedCount={props.increaseFriendsAcceptedCount} valueUser={props.valueUser} />
           </div>
         </div>
       )

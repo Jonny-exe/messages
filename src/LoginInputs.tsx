@@ -61,7 +61,7 @@ const LoginInputs = (props: any) => {
   return (
     <div className="logins">
       <input type="text" onChange={handleLogin} className="loginTextInput textInput" placeholder="Username"></input>
-      <input type="text" onChange={handleRegister} className="loginTextInput textInput" placeholder="Password"></input>
+      <input type="password" onChange={handleRegister} className="loginTextInput textInput" placeholder="Password"></input>
       <button type="button" onClick={() => {
         setFinalLoginPassword(storePassword)
       }} className="loginButtons button">Login</button>

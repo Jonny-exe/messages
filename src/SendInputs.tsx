@@ -1,3 +1,4 @@
+import { allowedNodeEnvironmentFlags } from 'process'
 import React, { useState } from 'react'
 import { SendMessage } from './requests.jsx'
 
@@ -9,14 +10,16 @@ const SendInputs = (props: any) => {
   }
 
 
-  const postValue = () => {
+  const sendInput = (event: any) => {
     SendMessage(props.valueUser, props.receiver, inputValue)
+    setInputValue("")
+    props.increaseMessagesSentCount()
   }
 
   return (
     <div className="inputs">
-      <input type="text" className="sendInput textInput" onChange={handleInput} />
-      <button type="button" className="sendButton button" onClick={postValue}> Send </button>
+      <input type="text" className="sendInput textInput" onChange={handleInput} value={inputValue} />
+      <button type="button" className="sendButton button" onClick={sendInput}> Send </button>
     </div>
   )
 }

@@ -8,10 +8,13 @@ import Logo from './Logo'
 import { AddUser } from './requests.jsx'
 
 const App = () => {
-  // postRequest("this is the test", "this is the new test")
   const [user, setUser] = useState("")
   const [receiver, setReceiver] = useState("")
   const [friendAdded, setFriendAdded] = useState(false) //This is just a value to toggle when a friend gets added so the apt gets fetched
+
+  // This is to update your messages or friends when you send a message or accept a friend
+  const [messagesSentCount, setMessagesSentCount] = useState(0)
+  const [friendsAcceptedCount, setFriendsAcceptedCount] = useState(0)
 
   const toggleFriendAdded = () => {
     setFriendAdded(!friendAdded)
@@ -20,6 +23,14 @@ const App = () => {
   const storeUser = (userName: string) => {
     localStorage.setItem("user", userName)
     setUser(userName)
+  }
+
+  const increaseFriendsAcceptedCount = () => {
+    setFriendsAcceptedCount(friendsAcceptedCount + 1)
+  }
+
+  const increaseMessagesSentCount = () => {
+    setMessagesSentCount(messagesSentCount + 1)
   }
 
   const saveUser = (username: string, password: string) => {
@@ -45,15 +56,15 @@ const App = () => {
     <div>
       <div className="app">
         <div className="friends">
-          <Logo valueUser={user} valueReciever={receiver}/>
-          <Friends friendAdded={friendAdded} valueUser={user} setReceiver={setReceiverFunc} valueReceiver={receiver} />
+          <Logo valueUser={user} valueReciever={receiver} />
+          <Friends friendsAcceptedCount={friendsAcceptedCount} friendAdded={friendAdded} valueUser={user} setReceiver={setReceiverFunc} valueReceiver={receiver} />
         </div>
         <div className="messages">
-          <MessagesAll valueUser={user} sender={user} receiver={receiver} />
-          <SendInput valueUser={user} receiver={receiver} />
+          <MessagesAll messagesSentCount={messagesSentCount} valueUser={user} sender={user} receiver={receiver} />
+          <SendInput increaseMessagesSentCount={increaseMessagesSentCount} valueUser={user} receiver={receiver} />
         </div>
         <div className="float">
-          <Login login={login} logOut={logOut} toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
+          <Login login={login} logOut={logOut} increaseFriendsAcceptedCount={increaseFriendsAcceptedCount} toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
         </div>
       </div>
     </div>

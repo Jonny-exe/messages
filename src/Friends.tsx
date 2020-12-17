@@ -4,7 +4,7 @@ import { GetFriends } from './requests.jsx'
 
 const Friends = (props: any) => {
   // props.setReceiver(props.valueReceiver)
-  var { friends } = GetFriends(props.valueUser, props.friendAdded)
+  var { friends } = GetFriends(props.valueUser, props.friendAdded, props.friendsAcceptedCount)
   console.log("Friends: ", friends)
   return (
     <div>

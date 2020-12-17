@@ -1,9 +1,9 @@
-import React from 'react'
+import React , {useState} from 'react'
 import Message from './Message'
 import { GetWithFilter } from './requests.jsx'
 
 export const MessagesAll = (props: any) => {
-  const { messages } = GetWithFilter(props.sender, props.receiver)
+  const { messages } = GetWithFilter(props.sender, props.receiver, props.messagesSentCount)
   console.log("MessagesAll: data: ", messages)
   console.log(messages)
   if (props.receiver === "") {
