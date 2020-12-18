@@ -13,7 +13,7 @@ const SendInputs = (props: any) => {
   const sendInput = (event: any) => {
     SendMessage(props.valueUser, props.receiver, inputValue)
     setInputValue("")
-    props.increaseMessagesSentCount()
+    setTimeout(props.increaseMessagesSentCount(), 1)
   }
 
   return (

@@ -8,14 +8,13 @@ export const MessagesAll = (props: any) => {
   console.log(messages)
   if (props.receiver === "") {
     return (
-      <div className="messages" >
+      <div className="messagesList" >
         <span className="noMessagesText">To start chatting select a receiver</span>
       </div>
     )
   } else {
     return (
-      <div className="messages">
-        <h3>{props.receiver} </h3>
+      <div className="messagesList">
         {!messages ? "loading" : messages.map((content: any) => (
           <Message data={content} user={props.valueUser} key={content._id} />
         ))}

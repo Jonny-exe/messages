@@ -10,6 +10,7 @@ const Logo = (props: any) => {
   var { picture } = GetProfileImage(props.valueUser)
   useEffect(() => {
     if (props.valueUser != null) {
+      console.log("Logo: setImage")
       setImage(picture)
     }
   }, [picture])
@@ -53,7 +54,7 @@ const Logo = (props: any) => {
       <div className="userName">
         <span className="currentUser">{props.valueUser == "null" ? "Please log in or register" : props.valueUser}</span>
       </div>
-      <img src={image} onClick={imageOnClick} className="profileImage" ></img>
+      <img src={picture} onClick={imageOnClick} className="profileImage" ></img>
       <div className={`modal ${modal ? "modalActive" : ""}`}>
         <div className="modalHeader">
           <h3> Resise your image </h3>

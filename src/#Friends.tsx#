@@ -1,0 +1,9 @@
+import React from 'react'
+import Friend from './Friend'
+import { GetFriends } from './requests.jsx'
+
+const Friends = (props: any) => {
+  //
+  jjjj
+
+export default Friends

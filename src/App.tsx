@@ -20,11 +20,6 @@ const App = () => {
     setFriendAdded(!friendAdded)
   }
 
-  const storeUser = (userName: string) => {
-    localStorage.setItem("user", userName)
-    setUser(userName)
-  }
-
   const increaseFriendsAcceptedCount = () => {
     setFriendsAcceptedCount(friendsAcceptedCount + 1)
   }
@@ -34,18 +29,20 @@ const App = () => {
   }
 
   const saveUser = (username: string, password: string) => {
-    storeUser(username)
+    login(username)
     AddUser(username, password)
   }
 
 
   const login = (username: string) => {
-    storeUser(username)
+    setUser(username)
+    localStorage.setItem("user", username)
   }
 
   const logOut = () => {
     console.log("App: logOut")
     setUser(undefined)
+    localStorage.removeItem("user")
   }
 
   const setReceiverFunc = (name: string) => {
@@ -60,11 +57,14 @@ const App = () => {
           <Friends friendsAcceptedCount={friendsAcceptedCount} friendAdded={friendAdded} valueUser={user} setReceiver={setReceiverFunc} valueReceiver={receiver} />
         </div>
         <div className="messages">
+          <div className="receiverContainer">
+            <span className="receiverName">{receiver}</span>
+          </div>
           <MessagesAll messagesSentCount={messagesSentCount} valueUser={user} sender={user} receiver={receiver} />
           <SendInput increaseMessagesSentCount={increaseMessagesSentCount} valueUser={user} receiver={receiver} />
         </div>
         <div className="float">
-          <Login login={login} logOut={logOut} increaseFriendsAcceptedCount={increaseFriendsAcceptedCount} toggleFriendAdded={toggleFriendAdded} storeUser={storeUser} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
+          <Login login={login} logOut={logOut} increaseFriendsAcceptedCount={increaseFriendsAcceptedCount} toggleFriendAdded={toggleFriendAdded} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
         </div>
       </div>
     </div>

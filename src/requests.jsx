@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { defaultImage } from "./defaultProfileImage"
 // This is just to have different test and production urls
 // const url = "http://localhost:5000/";
 const url = process.env.REACT_APP_REQUEST_URL
@@ -229,10 +230,10 @@ export const AddUser = (username, password) => {
     pass: password,
     friends: [],
     friendRequests: [],
-    profileImage: ""
+    profileImage: defaultImage
   }
   console.log("AddUser: bodyContent: ", bodyContent)
-  fetch(url, {
+  fetch(thisURL, {
     method: 'POST',
     headers: headersContent,
     credentials: 'same-origin',

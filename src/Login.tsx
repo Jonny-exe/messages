@@ -5,15 +5,16 @@ import FriendRequests from './FriendRequests'
 
 
 export const Login = (props: any) => {
-  const isSet = localStorage.getItem("user") === "null"
+  const isUserSet = localStorage.getItem("user") === "null"
   const storedUser = localStorage.getItem("user")
+  console.log("Login: storedUser: ", storedUser)
   const [visible, setLoginVisibility] = useState(false)
-  const [alreadySent, setAlreadySent] = useState(!isSet)
+  const [alreadySent, setAlreadySent] = useState(!isUserSet)
 
   useEffect(() => {
-    if (storedUser != "null" || storedUser != null) {
+    if (storedUser != "null" && storedUser != null) {
       console.log("Login: set new user", storedUser)
-      props.storeUser(storedUser)
+      props.login(storedUser)
     }
   }, [])
   const handleToggle = () => {
@@ -24,14 +25,13 @@ export const Login = (props: any) => {
   }
 
   const logOutOnClick = () => {
-    localStorage.removeItem("user")
     props.logOut()
     toggleAlreadySent()
   }
 
   if (visible) {
     console.log("Login: alreadySent, storedUser: ", alreadySent, storedUser)
-    if (!alreadySent || storedUser === "undefined") {
+    if (!alreadySent || storedUser === null) {
       return (
         <div className="loginDiv">
           <div className="loginToggleDiv">
