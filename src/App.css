@@ -1,5 +1,5 @@
 .app {
-  height: 100vh;
+  height: 99vh;
   background-color: white;
   display: flex;
   padding: 0.1%;
@@ -94,8 +94,14 @@ input {
   overflow: auto;
 }
 
-.loginDiv {
-  height: 100%;
+.loginContainer {
+  height: 96%;
+}
+
+.login {
+  max-width: 30%;
+  height: 95%;
+  margin: 1%;
 }
 
 .loginButtons {
@@ -194,9 +200,11 @@ the same  */
 
 .friendsList {
   text-align: left;
-  height: 65%; 
-  max-height: 65%; 
-  margin-bottom: 2%;
+  height: 60%; 
+  max-height: 60%; 
+  /* margin-bottom: 2%; */
+  padding: 1%;
+  margin-top: 3%;
   overflow: auto;
 }
 
@@ -220,12 +228,13 @@ the same  */
 .noMessagesText {
   font-size: 125%;
   font-weight: bold;
+  width: 100%;
 }
 
 .profileImage {
   border-radius: 5%;
-  width: 95%;
-  height: 95%;
+  width: 90%;
+  height: 90%;
   margin: 2%;
   transition-duration: 0.1s;
 }
@@ -357,12 +366,12 @@ input[type="file"] {
   text-align: center;
 }
 
-
-
 .inputsContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+  vertical-align: bottom;
+  height: 17%;
 }
 
 .inputs {

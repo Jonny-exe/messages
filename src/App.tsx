@@ -62,7 +62,7 @@ const App = () => {
           <MessagesAll messagesSentCount={messagesSentCount} valueUser={user} sender={user} receiver={receiver} />
           <SendInput increaseMessagesSentCount={increaseMessagesSentCount} valueUser={user} receiver={receiver} />
         </div>
-        <div className="float">
+        <div className="login">
           <Login login={login} logOut={logOut} increaseFriendsAcceptedCount={increaseFriendsAcceptedCount} toggleFriendAdded={toggleFriendAdded} saveUser={saveUser} valueUser={user} /> 
         </div>
       </div>

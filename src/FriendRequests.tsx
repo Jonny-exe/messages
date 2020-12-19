@@ -7,7 +7,7 @@ const FriendRequests = (props: any) => {
   console.log("FriendRequests: data: ", requests, props.valueUser)
 
   return (
-    <div>
+    <div style={{textAlign: "center"}}>
       <h2> Friend requests </h2>
       {requests == null ? "Loading" : requests.length === 0 ? "No requests" : requests.map((r: any) => (
         <div> <FriendRequest friendsAcceptedCount={props.friendsAcceptedcount}  increaseFriendsAcceptedCount={props.increaseFriendsAcceptedCount} valueUser={props.valueUser} name={r.name} date={r.date} /> </div>))}

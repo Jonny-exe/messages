@@ -7,6 +7,7 @@ export const FriendAdd = (props: any) => {
   const sendFriend = () => {
     AddFriendRequest(props.user, friend)
     props.toggleFriendAdded()
+    setFriend("")
   }
 
   const changeFriend = (event: any) => {
@@ -15,7 +16,7 @@ export const FriendAdd = (props: any) => {
 
   return (
     <div className="friendAdd">
-      <input className="friendAddInput textInput" type="text" onChange={changeFriend} placeholder="Friend Name"></input>
+      <input className="friendAddInput textInput" type="text" onChange={changeFriend} placeholder="Friend Name" value={friend}></input>
       <button type="button" className="friendAddButton button" onClick={sendFriend}>Add friend</button>
     </div>
   )

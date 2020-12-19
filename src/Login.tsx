@@ -35,7 +35,7 @@ export const Login = (props: any) => {
     console.log("Login: alreadySent, storedUser: ", alreadySent, storedUser)
     if (!alreadySent || storedUser === null) {
       return (
-        <div className="loginDiv">
+        <div className="loginContainer">
           <LoginToggle handleToggle={handleToggle} />
           <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} toggleAlreadySet={toggleAlreadySent} />
           <FriendAdd setNewFriend={props.setNewFriend} />
@@ -44,7 +44,7 @@ export const Login = (props: any) => {
       )
     } else {
       return (
-        <div className="loginDiv">
+        <div className="loginContainer">
           <LoginToggle handleToggle={handleToggle} />
           <div className="logins">
             <FriendAdd toggleFriendAdded={props.toggleFriendAdded} setNewFriend={props.setNewFriend} user={props.valueUser} />

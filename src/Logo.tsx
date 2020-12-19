@@ -48,7 +48,7 @@ const Logo = (props: any) => {
 
 
   return (
-    <div>
+    <div className="logo">
       <div className={`overlay ${modal ? "overlayActive" : ""}`} onClick={closeModal}>
       </div>
       <div className="userName">
