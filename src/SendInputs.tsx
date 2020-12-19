@@ -17,9 +17,11 @@ const SendInputs = (props: any) => {
   }
 
   return (
-    <div className="inputs">
-      <input type="text" className="sendInput textInput" onChange={handleInput} value={inputValue} />
-      <button type="button" className="sendButton button" onClick={sendInput}> Send </button>
+    <div className="inputsContainer">
+      <div className="inputs">
+        <input type="text" className="sendInput textInput" onChange={handleInput} value={inputValue} />
+        <button type="button" className="sendButton button" onClick={sendInput}> Send </button>
+      </div>
     </div>
   )
 }

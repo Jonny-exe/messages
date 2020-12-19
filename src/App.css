@@ -212,7 +212,7 @@ the same  */
 }
 
 .currentUser {
-  font-size: 130%;
+  font-size: 2vmax;
   font-weight: bold;
   max-width: 100%;
 }
@@ -348,10 +348,25 @@ input[type="file"] {
 }
 
 .receiverName {
+  font-size: 2vmax;
   font-weight: bold;
-  font-size: 120%;
+  max-width: 100%;
 }
 
 .receiverContainer {
   text-align: center;
+}
+
+
+
+.inputsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputs {
+  padding-left: 4%;
+  padding-right: 4%;
+  width: 95%;
 }

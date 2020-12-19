@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import FriendAdd from './FriendAdd'
 import LoginInputs from './LoginInputs'
 import FriendRequests from './FriendRequests'
+import LoginToggle from './LoginToggle'
+import Logout from './Logout'
 
 
 export const Login = (props: any) => {
@@ -34,9 +36,7 @@ export const Login = (props: any) => {
     if (!alreadySent || storedUser === null) {
       return (
         <div className="loginDiv">
-          <div className="loginToggleDiv">
-            <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
-          </div>
+          <LoginToggle handleToggle={handleToggle} />
           <LoginInputs login={props.login} saveUser={props.saveUser} valueUser={props.valueUser} toggleAlreadySet={toggleAlreadySent} />
           <FriendAdd setNewFriend={props.setNewFriend} />
           <FriendRequests increaseFriendsAcceptedCount={props.increaseFriendsAcceptedCount} valueUser={props.valueUser} />
@@ -45,14 +45,10 @@ export const Login = (props: any) => {
     } else {
       return (
         <div className="loginDiv">
-          <div className="loginToggleDiv">
-            <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
-          </div>
+          <LoginToggle handleToggle={handleToggle} />
           <div className="logins">
             <FriendAdd toggleFriendAdded={props.toggleFriendAdded} setNewFriend={props.setNewFriend} user={props.valueUser} />
-            <div className="friendAdd">
-              <button className="logoutButton button" onClick={logOutOnClick}>Logout</button>
-            </div>
+            <Logout logOutOnClick={logOutOnClick} />
             <FriendRequests increaseFriendsAcceptedCount={props.increaseFriendsAcceptedCount} valueUser={props.valueUser} />
           </div>
         </div>
@@ -60,9 +56,7 @@ export const Login = (props: any) => {
     }
   }
   return (
-    <div className="loginToggleDiv">
-      <button type="button" onClick={handleToggle} className="loginToggle" >👤</button>
-    </div>
+    <LoginToggle handleToggle={handleToggle} />
   )
 }
 

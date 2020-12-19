@@ -4,6 +4,7 @@ import SendInput from './SendInputs'
 import MessagesAll from './MessagesAll'
 import Login from './Login'
 import Friends from './Friends'
+import Receiver from './Receiver'
 import Logo from './Logo'
 import { AddUser } from './requests.jsx'
 
@@ -57,14 +58,12 @@ const App = () => {
           <Friends friendsAcceptedCount={friendsAcceptedCount} friendAdded={friendAdded} valueUser={user} setReceiver={setReceiverFunc} valueReceiver={receiver} />
         </div>
         <div className="messages">
-          <div className="receiverContainer">
-            <span className="receiverName">{receiver}</span>
-          </div>
+          <Receiver receiver={receiver} />
           <MessagesAll messagesSentCount={messagesSentCount} valueUser={user} sender={user} receiver={receiver} />
           <SendInput increaseMessagesSentCount={increaseMessagesSentCount} valueUser={user} receiver={receiver} />
         </div>
         <div className="float">
-          <Login login={login} logOut={logOut} increaseFriendsAcceptedCount={increaseFriendsAcceptedCount} toggleFriendAdded={toggleFriendAdded} saveUser={saveUser} valueUser={user} />  {/* This makes it possible to speak from child to child. Pases data: user from login to sendInput*/}
+          <Login login={login} logOut={logOut} increaseFriendsAcceptedCount={increaseFriendsAcceptedCount} toggleFriendAdded={toggleFriendAdded} saveUser={saveUser} valueUser={user} /> 
         </div>
       </div>
     </div>
