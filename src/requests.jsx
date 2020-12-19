@@ -186,7 +186,7 @@ export const AddFriend = (userContent, newFriendContent) => {
 }
 
 export const AddFriendRequest = (userContent, newFriendContent) => {
-  const thisURL = url + "addfriendrequests"
+  const thisURL = url + "addfriendrequest"
   var bodyContent = {
     name: userContent,
     newFriend: newFriendContent
